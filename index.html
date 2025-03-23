@@ -82,9 +82,18 @@ var x = setInterval(countdown, 1);
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 50px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
         .logo {
             width: 150px; /* Ajusta según tu logo */
+            margin-bottom: 20px;
         }
         .typewriter {
             font-family: monospace;
@@ -92,6 +101,8 @@ var x = setInterval(countdown, 1);
             white-space: nowrap;
             overflow: hidden;
             border-right: 2px solid black;
+            font-size: 20px;
+            color: #0c5bb4;
             animation: blink-caret 0.7s step-end infinite;
         }
         @keyframes blink-caret {
@@ -101,9 +112,10 @@ var x = setInterval(countdown, 1);
     </style>
 </head>
 <body>
-    <img src="logo.png" alt="Hexacore Logo" class="logo">
-    <br>
-    <div id="typewriter" class="typewriter"></div>
+    <div class="container">
+        <img src="logo.png" alt="Hexacore Logo" class="logo">
+        <div id="typewriter" class="typewriter"></div>
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const text = "www.hexacore.com.ar";
