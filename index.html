@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Hexacore | DEV Environment</title>
@@ -67,5 +67,59 @@ var x = setInterval(countdown, 1);
 </td>
       </tr>
     </table>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexacore</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .logo {
+            width: 150px; /* Ajusta según tu logo */
+        }
+        .typewriter {
+            font-family: monospace;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid black;
+            animation: blink-caret 0.7s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: black; }
+        }
+    </style>
+</head>
+<body>
+    <img src="logo.png" alt="Hexacore Logo" class="logo">
+    <br>
+    <div id="typewriter" class="typewriter"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const text = "www.hexacore.com.ar";
+            const typingSpeed = 100; // Velocidad de escritura en ms
+            let i = 0;
+
+            function typeWriter() {
+                if (i < text.length) {
+                    document.getElementById("typewriter").innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, typingSpeed);
+                }
+            }
+
+            typeWriter();
+        });
+    </script>
 </body>
 </html>
