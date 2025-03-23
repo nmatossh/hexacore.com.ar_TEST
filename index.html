@@ -37,27 +37,6 @@
     </style>
 </head>
 <body>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const textElement = document.getElementById('typewriter-text');
-        const text = "¡This is the End!";
-        let index = 0;
-
-        function typeWriter() {
-            if (index < text.length) {
-                textElement.innerHTML += text.charAt(index);
-                index++;
-                setTimeout(typeWriter, 100); // Ajusta la velocidad de escritura
-            } else {
-                setInterval(() => {
-                    textElement.innerHTML = textElement.innerHTML.endsWith("_") ? text : text + "_";
-                }, 500); // Hace parpadear el guion bajo
-            }
-        }
-
-        typeWriter();
-    });
-</script>
 <script>
 function countdown() {
   // Fecha objetivo
@@ -88,5 +67,27 @@ var x = setInterval(countdown, 1);
 </td>
       </tr>
     </table>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const textElement = document.getElementById('typewriter-text');
+        const text = "¡This is the End!";
+        let index = 0;
+
+        function typeWriter() {
+            if (index < text.length) {
+                textElement.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100); // Ajusta la velocidad de escritura
+            } else {
+                setInterval(() => {
+                    textElement.innerHTML = textElement.innerHTML.endsWith("_") ? text : text + "_";
+                }, 500); // Hace parpadear el guion bajo
+            }
+        }
+
+        typeWriter();
+    });
+</script>
+
 </body>
 </html>
