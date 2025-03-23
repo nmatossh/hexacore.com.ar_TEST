@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Hexacore | DEV Environment</title>
@@ -38,6 +38,27 @@
 </head>
 <body>
     <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const textElement = document.getElementById('typewriter-text');
+        const text = "¡This is the End!";
+        let index = 0;
+
+        function typeWriter() {
+            if (index < text.length) {
+                textElement.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100); // Ajusta la velocidad de escritura
+            } else {
+                setInterval(() => {
+                    textElement.innerHTML = textElement.innerHTML.endsWith("_") ? text : text + "_";
+                }, 500); // Hace parpadear el guion bajo
+            }
+        }
+
+        typeWriter();
+    });
+</script>
+<script>
 function countdown() {
   // Fecha objetivo
   const countDownDate = new Date("October 1, 2024 00:00:00").getTime();
@@ -54,7 +75,7 @@ function countdown() {
   // Contador a cero, acción personalizada
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("countdown").innerHTML = "¡This is the End!";
+    document.getElementById("countdown").innerHTML = "<span id="typewriter-text"></span>";
   }
 }
 // Ejecutar función cada ms<br>
@@ -68,86 +89,4 @@ var x = setInterval(countdown, 1);
       </tr>
     </table>
 </body>
-</html> -->
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexacore</title>
-    
-    <style>
-        /* Mantiene el estilo original */
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #ffffff;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Contenedor del logo */
-        .logo-container {
-            margin-top: 50px;
-        }
-
-        /* Estilo del texto animado */
-        #typewriter-text {
-            display: inline;
-            font-family: monospace;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 2px solid orange;
-            font-size: 20px;
-            font-weight: bold;
-            color: #0c5bb4;
-            animation: blink-caret 0.75s step-end infinite;
-        }
-
-        /* Animación para el parpadeo del guion bajo */
-        @keyframes blink-caret {
-            from, to {
-                border-color: transparent;
-            }
-            50% {
-                border-color: orange;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Contenedor del logo -->
-    <div class="logo-container">
-        <img src="tu-logo.png" alt="Hexacore Logo">
-    </div>
-
-    <!-- Texto con efecto de escritura -->
-    <p id="typewriter-text"></p>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const textElement = document.getElementById('typewriter-text');
-            const text = "¡This is the End!";
-            let index = 0;
-
-            function typeWriter() {
-                if (index < text.length) {
-                    textElement.textContent += text.charAt(index);
-                    index++;
-                    setTimeout(typeWriter, 100); // Ajusta la velocidad de escritura
-                } else {
-                    setInterval(() => {
-                        textElement.textContent = textElement.textContent.endsWith("_") ? text : text + "_";
-                    }, 500); // Hace parpadear el guion bajo
-                }
-            }
-
-            typeWriter();
-        });
-    </script>
-
-</body>
 </html>
-
