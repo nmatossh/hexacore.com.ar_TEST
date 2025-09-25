@@ -1,0 +1,15 @@
+/* Estilos para sección Inicio */
+#section1 { 
+    background-color: #333333; 
+}
+section { 
+    max-width: 960px; 
+    margin: 0 auto; 
+    padding: 240px 20px; 
+    text-align: left; 
+}
+section h2 { 
+    font-size: 2rem; 
+    text-align: left; 
+    margin-bottom: 20px; 
+}

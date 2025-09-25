@@ -10,7 +10,7 @@ html, body {
     height: 100%;
     font-family: Lato,"Lato Light","Lato Semibold",sans-serif;
     color: #E7E7E7;
-    background-color: #25D366;
+    background-color: #202020;
     scroll-behavior: smooth;
     padding-bottom: 70px; /* espacio para bottom bar */
 }

@@ -1,9 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
+export function setupUI() {
     const arrow = document.getElementById('arrow');
     const bottomBar = document.querySelector('.bottom-bar');
     const menu = document.getElementById('menu');
     const logo = document.querySelector('.logo img');
-    const hamburger = document.getElementById('hamburger');
     const menuLinks = document.querySelector('#menu .menu-links');
 
     // Estado inicial oculto
@@ -59,9 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (arrow) {
         arrow.addEventListener('click', scrollToContent);
         arrow.addEventListener('keydown', (e) => {
-            if(e.key === 'Enter' || e.key === ' ') { 
-                e.preventDefault(); 
-                scrollToContent(); 
+            if(e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                scrollToContent();
             }
         });
     }
@@ -71,28 +70,4 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.scrollY <= 10) { hideUI(); }
         else { showUI(); }
     });
-
-    // ==================== Menu hamburguesa ====================
-    if(hamburger){
-        hamburger.addEventListener('click', () => {
-            if(menuLinks.style.display === 'flex') {
-                menuLinks.style.display = 'none';
-                menuLinks.dataset.visible = 'false';
-            } else {
-                menuLinks.style.display = 'flex';
-                menuLinks.dataset.visible = 'true';
-            }
-        });
-    }
-
-    // Ocultar menú hamburguesa si se cambia tamaño de pantalla
-    window.addEventListener('resize', () => {
-        if(window.innerWidth > 900){
-            menuLinks.style.display = 'flex';
-            menuLinks.dataset.visible = 'false';
-        } else {
-            menuLinks.style.display = 'none';
-            menuLinks.dataset.visible = 'false';
-        }
-    });
-});
+}
