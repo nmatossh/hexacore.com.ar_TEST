@@ -1,0 +1,4 @@
+@media(max-width:600px){
+    .logo img{ width:70%; } 
+    nav#menu .menu-links a{ padding:8px 14px; font-size:16px; } 
+}

@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hexacore | Soluciones IT</title>
     <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- CSS divididos por funcionalidad -->
+    <link rel="stylesheet" href="css/styles.css">       <!-- Estilos generales y secciones -->
+    <link rel="stylesheet" href="css/navigation.css">   <!-- Menú, flecha, burguer -->
+    <link rel="stylesheet" href="css/bottombar.css">    <!-- Barra inferior -->
+    <link rel="stylesheet" href="css/responsive.css">   <!-- Media queries -->
+    <link rel="stylesheet" href="css/cards.css">        <!-- Cards -->
+
 </head>
+
 <body>
 
     <!-- Logo -->
@@ -49,7 +60,35 @@
     <!-- Secciones -->
     <section id="section1"><h2>Inicio</h2><p>Contenido de inicio...</p></section>
     <section id="section2"><h2>Nosotros</h2><p>Contenido de servicios...</p></section>
-    <section id="section3"><h2>Servicios</h2><p>Contenido de proyectos...</p></section>
+
+    <section  id="section3" class="services-section">
+    <div class="container">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-server service-icon"></i>
+                <h3>Infraestructura IT</h3>
+                <p>Soluciones completas de infraestructura tecnológica para empresas.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-shield-alt service-icon"></i>
+                <h3>Ciberseguridad</h3>
+                <p>Protección avanzada para tus sistemas y datos sensibles.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-cloud service-icon"></i>
+                <h3>Cloud Computing</h3>
+                <p>Migración y gestión de entornos cloud a medida.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-cloud service-icon"></i>
+                <h3>Reparación de Equipos</h3>
+                <p>Instalación de sistemas operativos y demás.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
     <section id="section4"><h2>Proyectos</h2><p>Contenido de clientes...</p></section>
     <section id="section5"><h2>Contacto</h2><p>Contenido de contacto...</p></section>
 
