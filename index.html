@@ -22,16 +22,13 @@
     <link rel="stylesheet" href="css/sections/projects.css" />
     <link rel="stylesheet" href="css/sections/contact.css" />
     <link rel="stylesheet" href="css/sections/services.css" />
-
-
 </head>
 
 <body>
 
-    <!-- Logo -->
+    <!-- Logo principal fuera del menú -->
     <div class="logo">
-        <img src="img/logo.png" alt="Hexacore Logo">
-    <h1>Hexacore</h1>
+        <img src="img/logo.svg" alt="Hexacore Logo">
     </div>
 
     <!-- Flecha -->
@@ -45,27 +42,27 @@
             <!-- Logo + texto al inicio del menú -->
             <div class="menu-logo">
                 <a href="#section1">
-                    <img src="img/header.png" alt="Hexacore Logo" width="140" height="40">
+                    <img src="img/header.svg" alt="Hexacore Logo" width="200" height="60">
                 </a>
             </div>
 
             <!-- Botón hamburguesa -->
-            <button id="hamburger" aria-label="Abrir menú" class="hamburger">
-                <i class="fas fa-bars"></i>
-            </button>
+            <button id="hamburger" aria-label="Abrir menú" aria-controls="menu-links" aria-expanded="false" class="hamburger">
+    <i class="fas fa-bars"></i>
+</button>
 
             <!-- Links del menú -->
-            <div class="menu-links" data-visible="false">
-                <a href="#section1">Inicio</a>
-                <a href="#section2">Nosotros</a>
-                <a href="#section3">Servicios</a>
-                <a href="#section4">Proyectos</a>
-                <a href="#section5">Contacto</a>
-            </div>
+            <div class="menu-links" id="menu-links" role="menu" data-visible="false">
+    <a href="#section1">Inicio</a>
+    <a href="#section2">Nosotros</a>
+    <a href="#section3">Servicios</a>
+    <a href="#section4">Proyectos</a>
+    <a href="#section5">Contacto</a>
+</div>
         </div>
     </nav>
 
-    <!-- Secciones -->
+    <!-- Secciones enlazadas desde el menú -->
     <section id="section1"><h2>Inicio</h2><p>Contenido de inicio...</p></section>
     <section id="section2"><h2>Nosotros</h2><p>Contenido de servicios...</p></section>
 
@@ -101,7 +98,7 @@
     <section id="section5"><h2>Contacto</h2><p>Contenido de contacto...</p></section>
 
     <!-- Bottom Bar -->
-    <div class="bottom-bar" aria-hidden="true">
+    <div class="bottom-bar">
         <div class="container">
             <div class="text">&copy; 2025 Hexacore. Todos los derechos reservados.</div>
             <div class="icons">
