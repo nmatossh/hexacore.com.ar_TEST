@@ -28,8 +28,20 @@ function setupMenu() {
   hamburger.addEventListener('click', (e) => {
     e.preventDefault();
     const visible = menuLinks.dataset.visible === 'true';
-    menuLinks.style.display = visible ? 'none' : 'flex';
-    menuLinks.dataset.visible = visible ? 'false' : 'true';
+    
+    if (visible) {
+      // Cerrar menú
+      menuLinks.dataset.visible = 'false';
+      hamburger.classList.remove('active');
+    } else {
+      // Abrir menú
+      menuLinks.style.display = 'flex';
+      // Pequeño delay para que el display se aplique antes de la animación
+      setTimeout(() => {
+        menuLinks.dataset.visible = 'true';
+        hamburger.classList.add('active');
+      }, 10);
+    }
     
     // Mejorar accesibilidad
     hamburger.setAttribute('aria-expanded', !visible);
@@ -38,9 +50,13 @@ function setupMenu() {
   // Cerrar menú al hacer clic en un enlace (solo en móvil)
   menuLinks.addEventListener('click', (e) => {
     if (e.target.tagName === 'A' && window.innerWidth <= 900) {
-      menuLinks.style.display = 'none';
       menuLinks.dataset.visible = 'false';
+      hamburger.classList.remove('active');
       hamburger.setAttribute('aria-expanded', 'false');
+      // Ocultar después de la animación
+      setTimeout(() => {
+        menuLinks.style.display = 'none';
+      }, 300);
     }
   });
 
@@ -48,10 +64,12 @@ function setupMenu() {
     if (window.innerWidth > 900) {
       menuLinks.style.display = 'flex';
       menuLinks.dataset.visible = 'false';
+      hamburger.classList.remove('active');
       hamburger.setAttribute('aria-expanded', 'false');
     } else {
       menuLinks.style.display = 'none';
       menuLinks.dataset.visible = 'false';
+      hamburger.classList.remove('active');
       hamburger.setAttribute('aria-expanded', 'false');
     }
   });

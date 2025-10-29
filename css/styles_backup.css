@@ -86,27 +86,52 @@ html, body {
 /* ===== Menú fijo (oculto inicialmente) ===== */
 nav#menu {
   position: fixed; top: 0; left: 50%;
-  width: 100vw !important;
+  width: 1400px; max-width: calc(100% - 40px);
   background-color: #1d1d1d; padding: 15px 0;
   z-index: 1000; opacity: 0; transform: translateX(-50%) translateY(-10px);
   transition: opacity 0.45s ease, transform 0.45s ease;
   pointer-events: none; /* clave para no bloquear clics oculto */
 }
-nav#menu .menu-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 60px; }
+nav#menu .menu-container { 
+  max-width: 1400px; 
+  margin: 0 auto; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 0 60px; 
+  width: 100%;
+  box-sizing: border-box;
+}
 nav#menu .menu-logo a{ color:#E7E7E7; text-decoration:none; font-weight:600; }
-nav#menu .menu-links { display: flex; gap: 0; }
+nav#menu .menu-links { 
+  display: flex; 
+  gap: 0; 
+  flex-wrap: nowrap;
+  align-items: center;
+}
 nav#menu .menu-links a { 
   background-color: #323232; 
   color: #E7E7E7; 
   text-decoration: none; 
-  padding: 12px 30px; 
+  padding: 12px 20px; 
   border-radius: 0; 
   transition: background 0.3s;
+  white-space: nowrap;
+  font-size: 0.9rem;
 }
 nav#menu .menu-links a:hover { background-color: #982b2b; }
 nav#menu .menu-links a:first-child { border-top-left-radius: 30px; border-bottom-left-radius: 30px; }
 nav#menu .menu-links a:last-child { border-top-right-radius: 30px; border-bottom-right-radius: 30px; }
-.hamburger { display: none; background: transparent; border: none; font-size: 1.8rem; color: #E7E7E7; cursor: pointer; }
+.hamburger { 
+  display: none; 
+  background: transparent; 
+  border: none; 
+  font-size: 1.8rem; 
+  color: #E7E7E7; 
+  cursor: pointer; 
+  padding: 8px;
+  margin-left: 20px;
+}
 
 /* ===== Secciones ===== */
 section { max-width: 1400px; margin: 0 auto; padding: 120px 20px; text-align: left; }
@@ -321,26 +346,43 @@ html {
 /* ===== Bottom bar ===== */
 .bottom-bar {
   position: fixed; bottom: 0; left: 50%;
-  width: 100vw !important;
+  width: 1400px; max-width: calc(100% - 40px);
   background: #1d1d1d; z-index: 1000;
   opacity: 0; transform: translateX(-50%) translateY(10px);
   transition: opacity 0.45s ease, transform 0.45s ease;
   pointer-events: none; /* no tapa contenido invisible */
-  display: flex; justify-content: center; align-items: center;
-  padding: 28px 0;
+  padding: 20px 0;
+  min-height: 60px;
 }
 .bottom-bar .container {
-  width: 1400px; max-width: 1400px;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 20px; padding: 0 60px; margin: 0 auto;
+  width: 100%;
+  max-width: 1400px;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  gap: 20px; 
+  padding: 0 60px; 
+  margin: 0 auto;
+  flex-wrap: nowrap;
 }
-.bottom-bar .text { font-size: 0.9rem; color: #E7E7E7; white-space: nowrap; }
-.bottom-bar .icons { display: flex; gap: 18px; align-items: center; }
+.bottom-bar .text { 
+  font-size: 0.9rem; 
+  color: #E7E7E7; 
+  white-space: nowrap; 
+  flex-shrink: 0;
+}
+.bottom-bar .icons { 
+  display: flex; 
+  gap: 18px; 
+  align-items: center; 
+  flex-shrink: 0;
+}
 /* Íconos de enlaces (heredan color y escalan en hover) */
 .bottom-bar .icons a {
   color: #E7E7E7; text-decoration: none;
   display: inline-flex; align-items: center; justify-content: center;
   transition: color 0.25s ease, transform 0.12s ease;
+  min-width: 24px;
 }
 .bottom-bar .icons a i { font-size: 1.4rem; line-height: 1; }
 .bottom-bar .icons a:hover { transform: scale(1.3); }
@@ -382,12 +424,11 @@ html {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(10px);
   }
-  
   /* Estado visible del menú */
   nav#menu .menu-links[data-visible="true"] {
     display: flex;
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
   
   /* Estilos de los enlaces del menú */
@@ -397,15 +438,9 @@ html {
     padding: 20px 0;
     font-size: 1.5rem;
     font-weight: 500;
-    border-radius: 0 !important; /* Forzar bordes rectos en móvil */
+    border-radius: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
-  }
-  
-  /* Forzar bordes rectos para todos los enlaces en móvil */
-  nav#menu .menu-links a:first-child,
-  nav#menu .menu-links a:last-child {
-    border-radius: 0 !important;
   }
   
   nav#menu .menu-links a:hover {
@@ -426,8 +461,6 @@ html {
     z-index: 10000;
     position: relative;
     transition: transform 0.3s ease;
-    padding: 8px;
-    margin-left: 20px;
   }
   
   /* Animación del botón hamburguesa cuando está activo */
@@ -436,24 +469,27 @@ html {
   }
 }
 @media (max-width: 1440px) {
+  nav#menu { width: calc(100% - 40px); }
+  .bottom-bar { width: calc(100% - 40px); }
   nav#menu .menu-container { padding: 0 40px; }
   .bottom-bar .container { padding: 0 40px; }
 }
 
-@media (max-width: 768px) {
-  nav#menu .menu-container { padding: 0 15px; }
-  
-  .bottom-bar {
-    padding: 15px 0;
-  }
+@media (max-width: 600px) {
+  .logo img { width: 70%; }
+  nav#menu .menu-links a { padding: 8px 14px; font-size: 16px; }
   
   .bottom-bar .container {
-    padding: 0 20px;
+    flex-direction: column;
     gap: 15px;
+    padding: 0 20px;
+    text-align: center;
   }
   
   .bottom-bar .text {
     font-size: 0.8rem;
+    white-space: normal;
+    line-height: 1.4;
   }
   
   .bottom-bar .icons {
@@ -462,36 +498,6 @@ html {
   
   .bottom-bar .icons a i {
     font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .logo img { width: 70%; }
-  nav#menu .menu-links a { padding: 8px 14px; font-size: 16px; }
-  
-  .bottom-bar {
-    padding: 12px 0;
-  }
-  
-  .bottom-bar .container {
-    flex-direction: column;
-    gap: 12px;
-    padding: 0 15px;
-    text-align: center;
-  }
-  
-  .bottom-bar .text {
-    font-size: 0.75rem;
-    white-space: normal;
-    line-height: 1.3;
-  }
-  
-  .bottom-bar .icons {
-    gap: 12px;
-  }
-  
-  .bottom-bar .icons a i {
-    font-size: 1.1rem;
   }
 }
 
@@ -857,6 +863,7 @@ nav#menu .menu-logo a{
   transform: scale(1.1) rotate(5deg);
 }
 
+
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
   nav#menu .menu-container { padding: 0 20px; }
@@ -879,12 +886,11 @@ nav#menu .menu-logo a{
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(10px);
   }
-  
   /* Estado visible del menú */
   nav#menu .menu-links[data-visible="true"] {
     display: flex;
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
   
   /* Estilos de los enlaces del menú */
@@ -894,15 +900,9 @@ nav#menu .menu-logo a{
     padding: 20px 0;
     font-size: 1.5rem;
     font-weight: 500;
-    border-radius: 0 !important; /* Forzar bordes rectos en móvil */
+    border-radius: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
-  }
-  
-  /* Forzar bordes rectos para todos los enlaces en móvil */
-  nav#menu .menu-links a:first-child,
-  nav#menu .menu-links a:last-child {
-    border-radius: 0 !important;
   }
   
   nav#menu .menu-links a:hover {
@@ -923,8 +923,6 @@ nav#menu .menu-logo a{
     z-index: 10000;
     position: relative;
     transition: transform 0.3s ease;
-    padding: 8px;
-    margin-left: 20px;
   }
   
   /* Animación del botón hamburguesa cuando está activo */
@@ -933,24 +931,27 @@ nav#menu .menu-logo a{
   }
 }
 @media (max-width: 1440px) {
+  nav#menu { width: calc(100% - 40px); }
+  .bottom-bar { width: calc(100% - 40px); }
   nav#menu .menu-container { padding: 0 40px; }
   .bottom-bar .container { padding: 0 40px; }
 }
 
-@media (max-width: 768px) {
-  nav#menu .menu-container { padding: 0 15px; }
-  
-  .bottom-bar {
-    padding: 15px 0;
-  }
+@media (max-width: 600px) {
+  .logo img { width: 70%; }
+  nav#menu .menu-links a { padding: 8px 14px; font-size: 16px; }
   
   .bottom-bar .container {
-    padding: 0 20px;
+    flex-direction: column;
     gap: 15px;
+    padding: 0 20px;
+    text-align: center;
   }
   
   .bottom-bar .text {
     font-size: 0.8rem;
+    white-space: normal;
+    line-height: 1.4;
   }
   
   .bottom-bar .icons {
@@ -959,36 +960,6 @@ nav#menu .menu-logo a{
   
   .bottom-bar .icons a i {
     font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .logo img { width: 70%; }
-  nav#menu .menu-links a { padding: 8px 14px; font-size: 16px; }
-  
-  .bottom-bar {
-    padding: 12px 0;
-  }
-  
-  .bottom-bar .container {
-    flex-direction: column;
-    gap: 12px;
-    padding: 0 15px;
-    text-align: center;
-  }
-  
-  .bottom-bar .text {
-    font-size: 0.75rem;
-    white-space: normal;
-    line-height: 1.3;
-  }
-  
-  .bottom-bar .icons {
-    gap: 12px;
-  }
-  
-  .bottom-bar .icons a i {
-    font-size: 1.1rem;
   }
 }
 
