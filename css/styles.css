@@ -88,9 +88,9 @@ nav#menu {
   position: fixed; top: 0; left: 50%;
   width: 100vw !important;
   background-color: #1d1d1d; padding: 15px 0;
-  z-index: 1000; opacity: 0; transform: translateX(-50%) translateY(-10px);
+  z-index: 1000; opacity: 1; transform: translateX(-50%) translateY(0);
   transition: opacity 0.45s ease, transform 0.45s ease;
-  pointer-events: none; /* clave para no bloquear clics oculto */
+  pointer-events: auto; /* visible por defecto para la prueba */
 }
 nav#menu .menu-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 60px; }
 nav#menu .menu-logo a{ color:#E7E7E7; text-decoration:none; font-weight:600; }
@@ -124,10 +124,16 @@ html {
 
 /* ===== Secciones estandarizadas ===== */
 .featured-section { padding: 4rem 0; }
+
+/* Excepción para section1 - padding personalizado */
+#section1.featured-section { 
+  padding: 5rem 0 4rem 0 !important; /* top: 5rem (para el menú), bottom: 4rem (igual que otras secciones), left/right: 0 */
+}
+
 .section-title { 
   text-align: center; 
   font-size: 2.5rem; 
-  margin-bottom: 3rem; 
+  margin-bottom: 2rem; 
   font-weight: 700;
   letter-spacing: -0.03em;
 }
@@ -323,9 +329,9 @@ html {
   position: fixed; bottom: 0; left: 50%;
   width: 100vw !important;
   background: #1d1d1d; z-index: 1000;
-  opacity: 0; transform: translateX(-50%) translateY(10px);
+  opacity: 1; transform: translateX(-50%) translateY(0);
   transition: opacity 0.45s ease, transform 0.45s ease;
-  pointer-events: none; /* no tapa contenido invisible */
+  pointer-events: auto; /* visible por defecto para la prueba */
   display: flex; justify-content: center; align-items: center;
   padding: 28px 0;
 }
@@ -1528,4 +1534,18 @@ nav#menu .menu-logo a{
   .client-item span {
     font-size: 0.8rem;
   }
+}
+
+/* FORZAR CAMBIO - MÁXIMA ESPECIFICIDAD */
+body #section1.featured-section {
+  padding-top: 5rem !important;
+  padding-bottom: 4rem !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Espaciado normal para sección nuestro equipo */
+#section2.featured-section {
+  padding-top: 1rem !important;
+  margin-top: 0 !important;
 }

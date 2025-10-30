@@ -4,14 +4,32 @@
   - Incluye animaciones de scroll y efectos interactivos
 */
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM cargado, configurando UI...');
+  
+  // Mostrar UI inmediatamente
+  const menu = document.getElementById('menu');
+  const bottomBar = document.querySelector('.bottom-bar');
+  
+  console.log('Menu encontrado:', menu);
+  console.log('Bottom bar encontrado:', bottomBar);
+  
+  if (menu) {
+    menu.style.opacity = '1';
+    menu.style.transform = 'translateX(-50%) translateY(0)';
+    menu.style.pointerEvents = 'auto';
+    console.log('Menu configurado');
+  }
+  
+  if (bottomBar) {
+    bottomBar.style.opacity = '1';
+    bottomBar.style.transform = 'translateX(-50%) translateY(0)';
+    bottomBar.style.pointerEvents = 'auto';
+    console.log('Bottom bar configurado');
+  }
+  
+  // Configurar menú hamburguesa
   setupMenu();
-  setupUI();
   setupScrollAnimations();
-  initHome();
-  initAbout();
-  initServices();
-  initProjects();
-  initContact();
 });
 
 /* Menú hamburguesa */
@@ -75,34 +93,27 @@ function setupMenu() {
   });
 }
 
-/* UI: flecha + menú + bottom bar */
+/* UI: menú + bottom bar (sin flecha ni logo para la prueba) */
 function setupUI() {
-  const arrow = document.getElementById('arrow');
   const bottomBar = document.querySelector('.bottom-bar');
   const menu = document.getElementById('menu');
-  const logo = document.querySelector('.logo img');
   const menuLinks = document.querySelector('#menu .menu-links');
 
-  if (!arrow || !menu || !bottomBar || !logo || !menuLinks) {
+  if (!menu || !bottomBar || !menuLinks) {
     console.warn('Elementos de UI no encontrados');
     return;
   }
 
-  // Estado inicial: oculto y sin capturar eventos
-  menu.style.opacity = '0';
-  menu.style.transform = 'translateX(-50%) translateY(-10px)';
-  menu.style.pointerEvents = 'none';
-
-  bottomBar.style.opacity = '0';
-  bottomBar.style.transform = 'translateX(-50%) translateY(10px)';
-  bottomBar.style.pointerEvents = 'none';
-
+  // Estado inicial: visible directamente para la prueba
   if (window.innerWidth > 900) {
     menuLinks.style.display = 'flex';
   } else {
     menuLinks.style.display = 'none';
     menuLinks.dataset.visible = 'false';
   }
+
+  // Mostrar UI inmediatamente
+  showUI();
 
   const showUI = () => {
     menu.style.opacity = '1';
@@ -120,9 +131,6 @@ function setupUI() {
     } else if (menuLinks.dataset.visible === 'true') {
       menuLinks.style.display = 'flex';
     }
-    
-    // Ocultar la flecha cuando se muestra la UI
-    arrow.style.opacity = '0';
   };
 
   const hideUI = () => {
@@ -138,40 +146,32 @@ function setupUI() {
       menuLinks.style.display = 'none';
       menuLinks.dataset.visible = 'false';
     }
-    
-    // Mostrar la flecha cuando se oculta la UI
-    arrow.style.opacity = '1';
   };
 
-  // Mostrar flecha al finalizar animación del logo (+ fallback)
-  logo.addEventListener('animationend', () => { arrow.style.opacity = '1'; });
-  setTimeout(() => { if (getComputedStyle(arrow).opacity === '0') arrow.style.opacity = '1'; }, 2000);
+  // Flecha comentada para la prueba
+  // logo.addEventListener('animationend', () => { arrow.style.opacity = '1'; });
+  // setTimeout(() => { if (getComputedStyle(arrow).opacity === '0') arrow.style.opacity = '1'; }, 2000);
 
-  const scrollToContent = () => {
-    const logoHeight = logo.parentElement.offsetHeight || 0;
-    const menuHeight = menu.offsetHeight || 0;
-    const offset = logoHeight - menuHeight; // Restar la altura del menú
-    window.scrollTo({ top: offset, behavior: 'smooth' });
-    showUI();
-    arrowClicked = true; // Marcar que se hizo clic en la flecha
-  };
+  // const scrollToContent = () => {
+  //   const logoHeight = logo.parentElement.offsetHeight || 0;
+  //   const menuHeight = menu.offsetHeight || 0;
+  //   const offset = logoHeight - menuHeight; // Restar la altura del menú
+  //   window.scrollTo({ top: offset, behavior: 'smooth' });
+  //   showUI();
+  //   arrowClicked = true; // Marcar que se hizo clic en la flecha
+  // };
 
-  arrow.addEventListener('click', scrollToContent);
-  arrow.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToContent(); }
-  });
+  // arrow.addEventListener('click', scrollToContent);
+  // arrow.addEventListener('keydown', (e) => {
+  //   if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToContent(); }
+  // });
 
   // Variable para controlar si el usuario hizo clic en la flecha
   let arrowClicked = false;
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY <= 10) {
-      // Si el usuario vuelve al inicio, ocultar UI y resetear estado
-      hideUI();
-      arrowClicked = false; // Resetear para permitir mostrar la flecha nuevamente
-    } else if (window.scrollY > 10) {
-      showUI();
-    }
+    // Para la prueba: mantener UI siempre visible
+    showUI();
   });
 }
 
