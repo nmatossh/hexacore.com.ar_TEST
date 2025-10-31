@@ -3,68 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Hexacore - Soluciones tecnológicas de infraestructura, seguridad y cloud">
-  <meta name="keywords" content="infraestructura, seguridad, cloud, soporte técnico, tecnología">
-  <title>Hexacore - Soluciones Tecnológicas</title>
-  
-  <!-- Preload de recursos críticos -->
-  <link rel="preload" href="css/styles.css" as="style">
-  <link rel="preload" href="js/main.js" as="script">
-  
-  <!-- Fuente Montserrat -->
+  <title>Layout base - Menú + 6 secciones + Bottom Bar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-  <!-- Hoja de estilos unificada -->
-  <link rel="stylesheet" href="css/styles.css">
-
-  <!-- Iconos: Font Awesome con fallback -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"
         onerror="this.onerror=null;this.href='css/font-awesome-fallback.css';">
+  <meta name="color-scheme" content="dark light">
 </head>
 <body>
-  <!-- Skip link para accesibilidad -->
-  <!-- <a href="#main-content" class="skip-link">Saltar al contenido principal</a> -->
-  
-  <!-- Hero: logo + flecha - TEMPORALMENTE OCULTO PARA PRUEBA -->
-  <!--
-  <div class="logo">
-    <img src="img/logo.svg" alt="Hexacore">
-    <button id="arrow" class="arrow" type="button" aria-label="Bajar al contenido">&#x25BC;</button>
-  </div>
-  -->
-
-  <!-- Menú fijo -->
-  <nav id="menu">
-    <div class="menu-container">
-      <div class="menu-logo">
-        <a href="#section1">
-          <img src="img/header.svg" alt="Hexacore" class="header-logo">
-        </a>
+  <header>
+    <nav id="menu" aria-label="Menú principal">
+      <div class="menu-container">
+        <div class="menu-logo">
+          <a href="#section1">
+            <img src="../img/header.svg" alt="Hexacore" class="header-logo">
+          </a>
+        </div>
+        <button id="hamburger" class="hamburger" type="button" aria-label="Abrir menú" aria-expanded="false">&#9776;</button>
+        <div class="menu-links" data-visible="false">
+          <a href="#section1">Inicio</a>
+          <a href="#section2">Nuestro Equipo</a>
+          <a href="#section3">Servicios</a>
+          <a href="#section4">Proyectos</a>
+          <a href="#section5">Clientes</a>
+          <a href="#section6">Contacto</a>
+        </div>
       </div>
-      <button id="hamburger" class="hamburger" type="button" aria-label="Abrir menú" aria-expanded="false">&#9776;</button>
-      <div class="menu-links" data-visible="false">
-        <a href="#section1">Inicio</a>
-        <a href="#section2">Nuestro Equipo</a>
-        <a href="#section3">Servicios</a>
-        <a href="#section4">Proyectos</a>
-        <a href="#section5">Clientes</a>
-        <a href="#section6">Contacto</a>
-      </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
-  <!-- Contenido principal -->
   <main id="main-content">
-    <!-- Quienes Somos -->
     <section id="section1" class="featured-section">
       <h2 class="section-title fade-in-scroll"></h2>
       <div class="home-content-grid">
         <div class="home-logo-section fade-in-scroll">
-          <img src="img/logo.svg" alt="Hexacore" class="home-logo">
+          <img src="../img/logo.svg" alt="Hexacore" class="home-logo">
         </div>
         <div class="home-text-section fade-in-scroll">
           <h3>Bienvenidos a Hexacore</h3>
@@ -82,9 +59,7 @@
       </div>
     </section>
 
-    <!-- Nuestro Equipo -->
     <section id="section2" class="featured-section">
-
       <!-- Equipo de Hexacore -->
       <div class="team-section">
         <h2 class="section-title fade-in-scroll">Nuestro Equipo</h2>
@@ -119,44 +94,42 @@
       </div>
     </section>
 
-  <!-- Servicios: tarjetas con iconos consistentes (heredan color desde CSS) -->
-  <section id="section3" class="featured-section">
-    <h2 class="section-title fade-in-scroll">Nuestros Servicios</h2>
-    <div class="services-grid">
-      <div class="service-card stagger-item">
-        <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-server"></i></div>
-        <h3>Infraestructura</h3>
-        <p>Soluciones completas de infraestructura tecnológica para empresas.</p>
+    <section id="section3" class="featured-section">
+      <h2 class="section-title fade-in-scroll">Nuestros Servicios</h2>
+      <div class="services-grid">
+        <div class="service-card stagger-item">
+          <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-server"></i></div>
+          <h3>Infraestructura</h3>
+          <p>Soluciones completas de infraestructura tecnológica para empresas.</p>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Seguridad</h3>
+          <p>Protección avanzada para tus sistemas y datos sensibles.</p>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-cloud"></i></div>
+          <h3>Cloud</h3>
+          <p>Migración y gestión de entornos cloud a medida.</p>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-hard-drive"></i></div>
+          <h3>Soporte Técnico</h3>
+          <p>Instalación de sistemas operativos y mantenimiento general.</p>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-network-wired"></i></div>
+          <h3>Redes</h3>
+          <p>Configuración y mantenimiento de infraestructura de red empresarial.</p>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-database"></i></div>
+          <h3>Bases de Datos</h3>
+          <p>Administración y optimización de bases de datos para tu empresa.</p>
+        </div>
       </div>
-      <div class="service-card stagger-item">
-        <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
-        <h3>Seguridad</h3>
-        <p>Protección avanzada para tus sistemas y datos sensibles.</p>
-      </div>
-      <div class="service-card stagger-item">
-        <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-cloud"></i></div>
-        <h3>Cloud</h3>
-        <p>Migración y gestión de entornos cloud a medida.</p>
-      </div>
-      <div class="service-card stagger-item">
-        <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-hard-drive"></i></div>
-        <h3>Soporte Técnico</h3>
-        <p>Instalación de sistemas operativos y mantenimiento general.</p>
-      </div>
-      <div class="service-card stagger-item">
-        <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-network-wired"></i></div>
-        <h3>Redes</h3>
-        <p>Configuración y mantenimiento de infraestructura de red empresarial.</p>
-      </div>
-      <div class="service-card stagger-item">
-        <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-database"></i></div>
-        <h3>Bases de Datos</h3>
-        <p>Administración y optimización de bases de datos para tu empresa.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-    <!-- Proyectos -->
     <section id="section4" class="featured-section">
       <h2 class="section-title fade-in-scroll">Nuestros Proyectos</h2>
       
@@ -248,22 +221,7 @@
       </div>
     </section>
 
-    <!-- Clientes -->
     <section id="section5" class="featured-section">
-      <h2 class="section-title fade-in-scroll">Clientes</h2>
-      
-      <!-- Introducción de clientes -->
-      <div class="content-grid">
-        <div class="content-item fade-in-scroll">
-          <h3>Nuestros Clientes de Confianza</h3>
-          <p>En Hexacore nos enorgullece trabajar con empresas líderes en sus sectores. Nuestro compromiso con la excelencia técnica y el servicio personalizado nos ha permitido construir relaciones sólidas y duraderas con organizaciones de diversos tamaños y sectores.</p>
-          
-          <p>Desde pequeñas empresas emergentes hasta grandes corporaciones multinacionales, hemos tenido el privilegio de ser el socio tecnológico de confianza para más de 200 organizaciones en toda Latinoamérica. Cada proyecto representa un desafío único y una oportunidad de demostrar nuestra capacidad de adaptación e innovación.</p>
-          
-          <p>Nuestros clientes confían en nosotros para mantener sus sistemas funcionando de manera óptima, proteger sus datos más sensibles y modernizar su infraestructura tecnológica. Esta confianza se refleja en la alta tasa de retención de clientes y las referencias positivas que recibimos constantemente.</p>
-        </div>
-      </div>
-
       <!-- Logos de clientes -->
       <div class="clients-section">
         <h3 class="clients-subtitle fade-in-scroll">Empresas que Confían en Nosotros</h3>
@@ -321,55 +279,33 @@
             
             <div class="client-item">
               <i class="fas fa-newspaper"></i>
-              <span>Medios de Comunicación</span>
+              <span>Comunicación</span>
             </div>
             
             <div class="client-item">
               <i class="fas fa-leaf"></i>
-              <span>Empresa Agropecuaria</span>
+              <span>Agropecuaria</span>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Testimonios -->
-      <div class="testimonials-section">
-        <h3 class="testimonials-subtitle fade-in-scroll">Lo que Dicen Nuestros Clientes</h3>
-        <div class="testimonials-grid">
-          <div class="testimonial-card stagger-item">
-            <div class="testimonial-content">
-              <p>"Hexacore transformó completamente nuestra infraestructura tecnológica. Su profesionalismo y conocimiento técnico nos permitieron modernizar nuestros sistemas sin interrupciones en el servicio."</p>
-              <div class="testimonial-author">
-                <strong>María González</strong>
-                <span>Directora de TI - Empresa Corporativa</span>
-              </div>
+            
+            <div class="client-item">
+              <i class="fas fa-car"></i>
+              <span>Automotriz</span>
             </div>
-          </div>
-          
-          <div class="testimonial-card stagger-item">
-            <div class="testimonial-content">
-              <p>"El soporte técnico de Hexacore es excepcional. Siempre están disponibles cuando los necesitamos y su respuesta es rápida y efectiva. Son verdaderos socios tecnológicos."</p>
-              <div class="testimonial-author">
-                <strong>Carlos Rodríguez</strong>
-                <span>Gerente General - Cadena de Retail</span>
-              </div>
+            
+            <div class="client-item">
+              <i class="fas fa-shopping-cart"></i>
+              <span>E-commerce</span>
             </div>
-          </div>
-          
-          <div class="testimonial-card stagger-item">
-            <div class="testimonial-content">
-              <p>"La migración a la nube que realizaron fue impecable. Redujimos costos operativos significativamente mientras mejoramos la seguridad y disponibilidad de nuestros sistemas."</p>
-              <div class="testimonial-author">
-                <strong>Ana Martínez</strong>
-                <span>CFO - Institución Financiera</span>
-              </div>
+            
+            <div class="client-item">
+              <i class="fas fa-building"></i>
+              <span>Inmobiliaria</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contacto -->
     <section id="section6" class="featured-section">
       <h2 class="section-title fade-in-scroll">Contacto</h2>
       <div class="contact-container">
@@ -477,22 +413,22 @@
     </section>
   </main>
 
-  <!-- Bottom bar: 4 ítems, orden consistente y clases de marca -->
+  <!-- Espaciador para permitir scroll adicional y que Contacto no quede tapado -->
+  <div class="scroll-spacer" aria-hidden="true"></div>
 
-  <div class="bottom-bar">
-        <div class="container">
-            <div class="text">&copy; 2025 Hexacore. Todos los derechos reservados | <a href="https://www.nicolasmato.com.ar" target="_blank" class="nmato-link">nmato</a> web design</div>
-            <div class="icons">
-                <a href="https://api.whatsapp.com/send?phone=5491123923138" target="_blank" class="whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:hexacore.soporte@gmail.com" class="mail" aria-label="Correo"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.instagram.com/hexacore.it/" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/hexacore.it" target="_blank" class="facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            </div>
-        </div>
+  <footer class="bottom-bar" role="contentinfo">
+    <div class="container">
+      <div class="text">&copy; 2025 Hexacore. Todos los derechos reservados | web design: <a href="https://www.nicolasmato.com.ar" target="_blank" class="nmato-link">nmato</a></div>
+      <div class="icons">
+        <a href="https://api.whatsapp.com/send?phone=5491123923138" target="_blank" class="whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:hexacore.soporte@gmail.com" class="mail" aria-label="Correo"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.instagram.com/hexacore.it/" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/hexacore.it" target="_blank" class="facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      </div>
     </div>
+  </footer>
 
-    <!-- JS unificado -->
-
-    <script src="js/main.js" defer></script>
+  <script src="./js/main.js" defer></script>
 </body>
 </html>
+
