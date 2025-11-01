@@ -1,38 +1,19 @@
-/*
-  JS unificado: navegación, UI, secciones y animaciones
-  - Mantiene clic de flecha, visibilidad de menú/footer y evita overlays invisibles
-  - Incluye animaciones de scroll y efectos interactivos
-*/
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM cargado, configurando UI...');
-  
-  // Mostrar UI inmediatamente
+// Calcula dinámicamente las alturas reales de la menu bar y bottom bar
+// y las expone como variables CSS para evitar solapamientos o huecos.
+
+function applyChromeHeights() {
+  const root = document.documentElement;
   const menu = document.getElementById('menu');
   const bottomBar = document.querySelector('.bottom-bar');
-  
-  console.log('Menu encontrado:', menu);
-  console.log('Bottom bar encontrado:', bottomBar);
-  
-  if (menu) {
-    menu.style.opacity = '1';
-    menu.style.transform = 'translateX(-50%) translateY(0)';
-    menu.style.pointerEvents = 'auto';
-    console.log('Menu configurado');
-  }
-  
-  if (bottomBar) {
-    bottomBar.style.opacity = '1';
-    bottomBar.style.transform = 'translateX(-50%) translateY(0)';
-    bottomBar.style.pointerEvents = 'auto';
-    console.log('Bottom bar configurado');
-  }
-  
-  // Configurar menú hamburguesa
-  setupMenu();
-  setupScrollAnimations();
-});
 
-/* Menú hamburguesa */
+  const menuH = menu ? menu.offsetHeight : 0;
+  const bottomH = bottomBar ? bottomBar.offsetHeight : 0;
+
+  root.style.setProperty('--nav-h', menuH + 'px');
+  root.style.setProperty('--bottom-h', bottomH + 'px');
+}
+
+// Menú hamburguesa
 function setupMenu() {
   const hamburger = document.getElementById('hamburger');
   const menuLinks = document.querySelector('#menu .menu-links');
@@ -93,88 +74,6 @@ function setupMenu() {
   });
 }
 
-/* UI: menú + bottom bar (sin flecha ni logo para la prueba) */
-function setupUI() {
-  const bottomBar = document.querySelector('.bottom-bar');
-  const menu = document.getElementById('menu');
-  const menuLinks = document.querySelector('#menu .menu-links');
-
-  if (!menu || !bottomBar || !menuLinks) {
-    console.warn('Elementos de UI no encontrados');
-    return;
-  }
-
-  // Estado inicial: visible directamente para la prueba
-  if (window.innerWidth > 900) {
-    menuLinks.style.display = 'flex';
-  } else {
-    menuLinks.style.display = 'none';
-    menuLinks.dataset.visible = 'false';
-  }
-
-  // Mostrar UI inmediatamente
-  showUI();
-
-  const showUI = () => {
-    menu.style.opacity = '1';
-    menu.style.transform = 'translateX(-50%) translateY(0)';
-    menu.style.pointerEvents = 'auto';
-
-    bottomBar.style.opacity = '1';
-    bottomBar.style.transform = 'translateX(-50%) translateY(0)';
-    bottomBar.style.pointerEvents = 'auto';
-
-    // En desktop, siempre mostrar el menú
-    if (window.innerWidth > 900) {
-      menuLinks.style.display = 'flex';
-      menuLinks.dataset.visible = 'false';
-    } else if (menuLinks.dataset.visible === 'true') {
-      menuLinks.style.display = 'flex';
-    }
-  };
-
-  const hideUI = () => {
-    menu.style.opacity = '0';
-    menu.style.transform = 'translateX(-50%) translateY(-10px)';
-    menu.style.pointerEvents = 'none';
-
-    bottomBar.style.opacity = '0';
-    bottomBar.style.transform = 'translateX(-50%) translateY(10px)';
-    bottomBar.style.pointerEvents = 'none';
-
-    if (window.innerWidth <= 900) {
-      menuLinks.style.display = 'none';
-      menuLinks.dataset.visible = 'false';
-    }
-  };
-
-  // Flecha comentada para la prueba
-  // logo.addEventListener('animationend', () => { arrow.style.opacity = '1'; });
-  // setTimeout(() => { if (getComputedStyle(arrow).opacity === '0') arrow.style.opacity = '1'; }, 2000);
-
-  // const scrollToContent = () => {
-  //   const logoHeight = logo.parentElement.offsetHeight || 0;
-  //   const menuHeight = menu.offsetHeight || 0;
-  //   const offset = logoHeight - menuHeight; // Restar la altura del menú
-  //   window.scrollTo({ top: offset, behavior: 'smooth' });
-  //   showUI();
-  //   arrowClicked = true; // Marcar que se hizo clic en la flecha
-  // };
-
-  // arrow.addEventListener('click', scrollToContent);
-  // arrow.addEventListener('keydown', (e) => {
-  //   if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToContent(); }
-  // });
-
-  // Variable para controlar si el usuario hizo clic en la flecha
-  let arrowClicked = false;
-
-  window.addEventListener('scroll', () => {
-    // Para la prueba: mantener UI siempre visible
-    showUI();
-  });
-}
-
 /* ===== Animaciones de Scroll ===== */
 function setupScrollAnimations() {
   const observerOptions = {
@@ -198,114 +97,56 @@ function setupScrollAnimations() {
   animatedElements.forEach(el => observer.observe(el));
 }
 
-/* ===== Efectos Interactivos Mejorados ===== */
-function initHome() {
-  console.log('Sección Home cargada');
-  
-  // Efecto de typing para el título principal
-  const mainTitle = document.querySelector('.section-title');
-  if (mainTitle) {
-    mainTitle.style.opacity = '0';
-    setTimeout(() => {
-      mainTitle.style.opacity = '1';
-      mainTitle.style.transition = 'opacity 0.8s ease';
-    }, 500);
-  }
-}
+/* ===== Transparencia del Menu Bar en Scroll y Clicks ===== */
+function setupMenuTransparency() {
+  const menu = document.getElementById('menu');
+  if (!menu) return;
 
-function initAbout() {
-  console.log('Sección About cargada');
-  
-  // Efecto de hover mejorado para miembros del equipo
-  const teamMembers = document.querySelectorAll('.team-member');
-  teamMembers.forEach(member => {
-    member.addEventListener('mouseenter', () => {
-      member.style.transform = 'translateY(-8px) scale(1.02)';
-    });
-    member.addEventListener('mouseleave', () => {
-      member.style.transform = 'translateY(0) scale(1)';
-    });
-  });
-}
+  // Detectar scroll
+  let lastScrollTop = 0;
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Si está en la parte superior (top 0-10px), quitar transparencia
+    if (scrollTop <= 10) {
+      menu.classList.remove('transparent');
+    } else {
+      // Si hace scroll hacia abajo, agregar transparencia
+      menu.classList.add('transparent');
+    }
+    lastScrollTop = scrollTop;
+  }, false);
 
-function initServices() {
-  console.log('Sección Services cargada');
-  
-  // Efectos hover mejorados para tarjetas de servicios
-  const serviceCards = document.querySelectorAll('.service-card');
-  serviceCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      card.style.transform = 'translateY(-8px) rotate(1deg)';
-      card.style.boxShadow = '0 8px 25px rgba(152, 43, 43, 0.3)';
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'translateY(0) rotate(0deg)';
-      card.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-    });
-  });
-}
-
-function initProjects() {
-  console.log('Sección Projects cargada');
-  
-  // Efectos hover mejorados para tarjetas de proyectos
-  const projectCards = document.querySelectorAll('.project-card');
-  projectCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      card.style.transform = 'translateY(-8px) scale(1.02)';
-      card.style.boxShadow = '0 12px 35px rgba(152, 43, 43, 0.25)';
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'translateY(0) scale(1)';
-      card.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-    });
-  });
-}
-
-function initContact() {
-  console.log('Sección Contact cargada');
-  
-  // Efectos de focus mejorados para el formulario
-  const formInputs = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
-  formInputs.forEach(input => {
-    input.addEventListener('focus', () => {
-      input.style.borderColor = '#982b2b';
-      input.style.boxShadow = '0 0 0 2px rgba(152, 43, 43, 0.2)';
-    });
-    input.addEventListener('blur', () => {
-      input.style.borderColor = '#555';
-      input.style.boxShadow = 'none';
-    });
-  });
-  
-  // Efecto de ripple para el botón de envío
-  const submitBtn = document.querySelector('.submit-btn');
-  if (submitBtn) {
-    submitBtn.addEventListener('click', (e) => {
-      const ripple = document.createElement('span');
-      const rect = submitBtn.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height);
-      const x = e.clientX - rect.left - size / 2;
-      const y = e.clientY - rect.top - size / 2;
-      
-      ripple.style.cssText = `
-        position: absolute;
-        width: ${size}px;
-        height: ${size}px;
-        left: ${x}px;
-        top: ${y}px;
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        transform: scale(0);
-        animation: ripple 0.6s linear;
-        pointer-events: none;
-      `;
-      
-      submitBtn.appendChild(ripple);
-      
+  // Detectar clicks en enlaces del menú
+  const menuLinks = document.querySelectorAll('#menu .menu-links a');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('transparent');
+      // Después de 1 segundo, verificar si está en el top
       setTimeout(() => {
-        ripple.remove();
-      }, 600);
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop <= 10) {
+          menu.classList.remove('transparent');
+        }
+      }, 1000);
     });
-  }
+  });
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  applyChromeHeights();
+  setupMenu();
+  setupScrollAnimations();
+  setupMenuTransparency();
+  // Recalcular en resize por si el alto cambia (responsive)
+  window.addEventListener('resize', applyChromeHeights);
+  
+  // Activar animaciones de entrada del menu bar y bottom bar
+  // Pequeño delay para que se vea el efecto
+  setTimeout(() => {
+    document.body.classList.add('page-loaded');
+  }, 50);
+});
+
+
+
