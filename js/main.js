@@ -97,10 +97,11 @@ function setupScrollAnimations() {
   animatedElements.forEach(el => observer.observe(el));
 }
 
-/* ===== Transparencia del Menu Bar en Scroll y Clicks ===== */
+/* ===== Transparencia del Menu Bar y Bottom Bar en Scroll y Clicks ===== */
 function setupMenuTransparency() {
   const menu = document.getElementById('menu');
-  if (!menu) return;
+  const bottomBar = document.querySelector('.bottom-bar');
+  if (!menu || !bottomBar) return;
 
   // Detectar scroll
   let lastScrollTop = 0;
@@ -110,9 +111,11 @@ function setupMenuTransparency() {
     // Si está en la parte superior (top 0-10px), quitar transparencia
     if (scrollTop <= 10) {
       menu.classList.remove('transparent');
+      bottomBar.classList.remove('transparent');
     } else {
       // Si hace scroll hacia abajo, agregar transparencia
       menu.classList.add('transparent');
+      bottomBar.classList.add('transparent');
     }
     lastScrollTop = scrollTop;
   }, false);
@@ -122,11 +125,30 @@ function setupMenuTransparency() {
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {
       menu.classList.add('transparent');
+      bottomBar.classList.add('transparent');
       // Después de 1 segundo, verificar si está en el top
       setTimeout(() => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         if (scrollTop <= 10) {
           menu.classList.remove('transparent');
+          bottomBar.classList.remove('transparent');
+        }
+      }, 1000);
+    });
+  });
+
+  // Detectar clicks en iconos de la bottom bar
+  const bottomBarIcons = document.querySelectorAll('.bottom-bar .icons a');
+  bottomBarIcons.forEach(icon => {
+    icon.addEventListener('click', () => {
+      menu.classList.add('transparent');
+      bottomBar.classList.add('transparent');
+      // Después de 1 segundo, verificar si está en el top
+      setTimeout(() => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop <= 10) {
+          menu.classList.remove('transparent');
+          bottomBar.classList.remove('transparent');
         }
       }, 1000);
     });

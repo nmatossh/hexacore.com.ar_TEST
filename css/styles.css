@@ -335,7 +335,14 @@ html { scroll-padding-top: var(--nav-h, var(--nav-height)); }
   position: fixed; bottom: 0; left: 0; width: 100%; background:#1d1d1d; z-index:1000; padding: 10px 0; 
   /* Estado inicial: fuera de la pantalla abajo */
   transform: translateY(100%);
-  transition: transform 0.6s ease-out;
+  transition: transform 0.6s ease-out, background-color 0.3s ease;
+}
+
+/* Transparencia de la bottom bar cuando se hace scroll o se hace click en iconos */
+.bottom-bar.transparent {
+  background-color: rgba(29, 29, 29, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 /* Animación de entrada cuando la página carga */
