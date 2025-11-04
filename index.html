@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hexacore | Soluciones & Consultoría IT</title>
+  <link rel="icon" type="image/svg+xml" href="./img/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,17 +21,20 @@
       <div class="menu-container">
         <div class="menu-logo">
           <a href="#section1">
-            <img src="../img/header.svg" alt="Hexacore" class="header-logo">
+            <img src="./img/header.svg" alt="Hexacore" class="header-logo">
           </a>
         </div>
         <button id="hamburger" class="hamburger" type="button" aria-label="Abrir menú" aria-expanded="false">&#9776;</button>
         <div class="menu-links" data-visible="false">
           <a href="#section1">Inicio</a>
-          <a href="#section2">Nuestro Equipo</a>
+          <a href="#section2">Nosotros</a>
           <a href="#section3">Servicios</a>
           <a href="#section4">Proyectos</a>
           <a href="#section5">Clientes</a>
           <a href="#section6">Contacto</a>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">
+            <i class="fas fa-moon" id="theme-icon"></i>
+          </button>
         </div>
       </div>
     </nav>
@@ -38,12 +42,11 @@
 
   <main id="main-content">
     <section id="section1" class="featured-section">
-      <h2 class="section-title"></h2>
       <div class="home-content-grid">
-        <div class="home-logo-section">
-          <img src="../img/logo.svg" alt="Hexacore" class="home-logo">
+        <div class="home-logo-section slide-in-left">
+          <img src="./img/logo.svg" alt="Hexacore" class="home-logo">
         </div>
-        <div class="home-text-section">
+        <div class="home-text-section slide-in-right">
           <h3>Bienvenidos a Hexacore</h3>
           
           <p>Somos una empresa especializada en soluciones tecnológicas integrales para empresas de todos los tamaños. Con más de una década de experiencia en el sector, nos hemos consolidado como el socio tecnológico de confianza para organizaciones que buscan optimizar sus procesos y modernizar su infraestructura.</p>
@@ -64,10 +67,10 @@
       <div class="team-section">
         <h2 class="section-title">Nuestro Equipo</h2>
         <div class="team-grid">
-          <div class="team-member">
+          <div class="team-member slide-in-left">
             <div class="member-photo">
-              <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer">
-                <img src="../img/team/team.png" alt="Nicolás" class="member-image">
+              <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Nicolás">
+                <img src="./img/team/team.png" alt="Nicolás" class="member-image">
               </a>
             </div>
             <div class="member-info">
@@ -77,10 +80,10 @@
             </div>
           </div>
 
-          <div class="team-member">
+          <div class="team-member slide-in-right">
             <div class="member-photo">
-              <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer">
-                <img src="../img/team/team.png" alt="Mariana" class="member-image">
+              <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Mariana">
+                <img src="./img/team/team.png" alt="Mariana" class="member-image">
               </a>
             </div>
             <div class="member-info">
@@ -90,10 +93,10 @@
             </div>
           </div>
 
-          <div class="team-member">
+          <div class="team-member slide-in-left">
             <div class="member-photo">
-              <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer">
-                <img src="../img/team/team.png" alt="Hexa-Bot" class="member-image">
+              <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Hexa-Bot">
+                <img src="./img/team/team.png" alt="Hexa-Bot" class="member-image">
               </a>
             </div>
             <div class="member-info">
@@ -103,10 +106,10 @@
             </div>
           </div>
 
-          <div class="team-member">
+          <div class="team-member slide-in-right">
             <div class="member-photo">
-              <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer">
-                <img src="../img/team/team.png" alt="Delfina" class="member-image">
+              <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Delfina">
+                <img src="./img/team/team.png" alt="Delfina" class="member-image">
               </a>
             </div>
             <div class="member-info">
@@ -122,32 +125,32 @@
     <section id="section3" class="featured-section">
       <h2 class="section-title">Nuestros Servicios</h2>
       <div class="services-grid">
-        <div class="service-card">
+        <div class="service-card slide-in-left">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-server"></i></div>
           <h3>Infraestructura</h3>
           <p>Soluciones completas de infraestructura tecnológica para empresas.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card slide-in-right">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
           <h3>Seguridad</h3>
           <p>Protección avanzada para tus sistemas y datos sensibles.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card slide-in-left">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-cloud"></i></div>
           <h3>Cloud</h3>
           <p>Migración y gestión de entornos cloud a medida.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card slide-in-right">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-hard-drive"></i></div>
           <h3>Soporte Técnico</h3>
           <p>Instalación de sistemas operativos y mantenimiento general.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card slide-in-left">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-network-wired"></i></div>
           <h3>Redes</h3>
           <p>Configuración y mantenimiento de infraestructura de red empresarial.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card slide-in-right">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-database"></i></div>
           <h3>Bases de Datos</h3>
           <p>Administración y optimización de bases de datos para tu empresa.</p>
@@ -160,7 +163,7 @@
       
       <!-- Proyectos destacados -->
       <div class="projects-container">
-        <div class="project-card">
+        <div class="project-card slide-in-left">
           <div class="project-icon">
             <i class="fas fa-building"></i>
           </div>
@@ -174,7 +177,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card slide-in-right">
           <div class="project-icon">
             <i class="fas fa-shield-alt"></i>
           </div>
@@ -188,7 +191,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card slide-in-left">
           <div class="project-icon">
             <i class="fas fa-network-wired"></i>
           </div>
@@ -202,7 +205,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card slide-in-right">
           <div class="project-icon">
             <i class="fas fa-database"></i>
           </div>
@@ -216,7 +219,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card slide-in-left">
           <div class="project-icon">
             <i class="fas fa-cloud"></i>
           </div>
@@ -230,7 +233,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card slide-in-right">
           <div class="project-icon">
             <i class="fas fa-server"></i>
           </div>
@@ -252,80 +255,56 @@
         <h3 class="clients-subtitle">Empresas que Confían en Nosotros</h3>
         <div class="clients-single-card">
           <div class="clients-content">
-            <div class="client-item">
-              <i class="fas fa-shield-alt"></i>
+            <div class="client-item slide-in-left">
+              <img src="./img/logos/avast.svg" alt="Avast" class="client-logo">
               <span>Avast</span>
             </div>
             
-            <div class="client-item">
-              <i class="fas fa-lock"></i>
+            <div class="client-item slide-in-right">
+              <img src="./img/logos/kaspersky.svg" alt="Kaspersky" class="client-logo">
               <span>Kaspersky</span>
             </div>
             
-            <div class="client-item">
+            <div class="client-item slide-in-left">
               <i class="fas fa-laptop"></i>
               <span>Dell</span>
             </div>
             
-            <div class="client-item">
+            <div class="client-item slide-in-right">
               <i class="fas fa-desktop"></i>
               <span>HP</span>
             </div>
             
-            <div class="client-item">
+            <div class="client-item slide-in-left">
               <i class="fas fa-computer"></i>
               <span>Lenovo</span>
             </div>
             
-            <div class="client-item">
+            <div class="client-item slide-in-right">
               <i class="fas fa-industry"></i>
               <span>Manufacturera</span>
             </div>
             
-            <div class="client-item">
+            <div class="client-item slide-in-left">
               <i class="fas fa-hospital"></i>
               <span>Sector Salud</span>
             </div>
             
-            <div class="client-item">
+            <div class="client-item slide-in-right">
               <i class="fas fa-graduation-cap"></i>
               <span>Educativa</span>
             </div>
             
-            <div class="client-item">
+            <div class="client-item slide-in-left">
               <i class="fas fa-utensils"></i>
               <span>Gastronómico</span>
             </div>
             
-            <div class="client-item">
+            <div class="client-item slide-in-right">
               <i class="fas fa-plane"></i>
               <span>Turismo</span>
             </div>
             
-            <div class="client-item">
-              <i class="fas fa-newspaper"></i>
-              <span>Comunicación</span>
-            </div>
-            
-            <div class="client-item">
-              <i class="fas fa-leaf"></i>
-              <span>Agropecuaria</span>
-            </div>
-            
-            <div class="client-item">
-              <i class="fas fa-car"></i>
-              <span>Automotriz</span>
-            </div>
-            
-            <div class="client-item">
-              <i class="fas fa-shopping-cart"></i>
-              <span>E-commerce</span>
-            </div>
-            
-            <div class="client-item">
-              <i class="fas fa-building"></i>
-              <span>Inmobiliaria</span>
-            </div>
           </div>
         </div>
       </div>
@@ -335,7 +314,7 @@
       <h2 class="section-title">Contacto</h2>
       <div class="contact-container">
         <!-- Formulario de Contacto -->
-        <div class="contact-form-section">
+        <div class="contact-form-section slide-in-left">
           <h3>Envíanos tu Consulta</h3>
           <form class="contact-form" action="#" method="POST">
             <div class="form-group">
@@ -382,7 +361,7 @@
         </div>
 
         <!-- Información de Contacto y Mapa -->
-        <div class="contact-info-section">
+        <div class="contact-info-section slide-in-right">
           <div class="contact-details">
             <h3>Información de Contacto</h3>
             <div class="contact-item">
@@ -429,7 +408,8 @@
                 style="border:0;" 
                 allowfullscreen="" 
                 loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Ubicación de Hexacore en Buenos Aires, Argentina">
               </iframe>
             </div>
           </div>
@@ -443,7 +423,7 @@
 
   <footer class="bottom-bar" role="contentinfo">
     <div class="container">
-      <div class="text">&copy; 2025 Hexacore. Todos los derechos reservados | web design: <a href="https://www.nicolasmato.com.ar" target="_blank" class="nmato-link">nmato</a></div>
+      <div class="text">&copy; 2025 Hexacore | Todos los derechos reservados | Diseño Web: <a href="https://www.nicolasmato.com.ar" target="_blank" class="nmato-link">nmato</a></div>
       <div class="icons">
         <a href="https://api.whatsapp.com/send?phone=5491123923138" target="_blank" class="whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         <a href="mailto:hexacore.soporte@gmail.com" class="mail" aria-label="Correo"><i class="fas fa-envelope"></i></a>

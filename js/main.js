@@ -1,16 +1,27 @@
 // Calcula dinámicamente las alturas reales de la menu bar y bottom bar
 // y las expone como variables CSS para evitar solapamientos o huecos.
+// Si el JavaScript no se ejecuta, se usan los valores de respaldo en CSS.
 
 function applyChromeHeights() {
   const root = document.documentElement;
   const menu = document.getElementById('menu');
   const bottomBar = document.querySelector('.bottom-bar');
+  
+  if (!menu || !bottomBar) {
+    console.warn('Elementos del menú o footer no encontrados, usando valores de respaldo');
+    return;
+  }
+  
+  const menuH = menu.offsetHeight;
+  const bottomH = bottomBar.offsetHeight;
 
-  const menuH = menu ? menu.offsetHeight : 0;
-  const bottomH = bottomBar ? bottomBar.offsetHeight : 0;
-
+  // Actualizar variables CSS dinámicas
   root.style.setProperty('--nav-h', menuH + 'px');
   root.style.setProperty('--bottom-h', bottomH + 'px');
+  
+  // También actualizar las variables de respaldo para consistencia
+  root.style.setProperty('--nav-height', menuH + 'px');
+  root.style.setProperty('--bottom-height', bottomH + 'px');
 }
 
 // Menú hamburguesa
@@ -127,7 +138,7 @@ function setupMenuTransparency() {
       menu.classList.add('transparent');
       bottomBar.classList.add('transparent');
       // Después de 1 segundo, verificar si está en el top
-      setTimeout(() => {
+    setTimeout(() => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         if (scrollTop <= 10) {
           menu.classList.remove('transparent');
@@ -155,11 +166,250 @@ function setupMenuTransparency() {
   });
 }
 
+/* ===== Validación del Formulario de Contacto ===== */
+function setupFormValidation() {
+  const form = document.querySelector('.contact-form');
+  if (!form) return;
+
+  const nombre = document.getElementById('nombre');
+  const email = document.getElementById('email');
+  const telefono = document.getElementById('telefono');
+  const mensaje = document.getElementById('mensaje');
+
+  // Función para mostrar error
+  function showError(input, message) {
+    const formGroup = input.closest('.form-group');
+    let errorElement = formGroup.querySelector('.error-message');
+    
+    if (!errorElement) {
+      errorElement = document.createElement('span');
+      errorElement.className = 'error-message';
+      formGroup.appendChild(errorElement);
+    }
+    
+    errorElement.textContent = message;
+    input.classList.add('error');
+  }
+
+  // Función para limpiar error
+  function clearError(input) {
+    const formGroup = input.closest('.form-group');
+    const errorElement = formGroup.querySelector('.error-message');
+    
+    if (errorElement) {
+      errorElement.remove();
+    }
+    
+    input.classList.remove('error');
+  }
+
+  // Validar email
+  function validateEmail(emailValue) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(emailValue);
+  }
+
+  // Validar teléfono (opcional, pero si se proporciona debe ser válido)
+  function validatePhone(phoneValue) {
+    if (!phoneValue.trim()) return true; // Opcional
+    const phoneRegex = /^[\d\s\+\-\(\)]+$/;
+    return phoneRegex.test(phoneValue) && phoneValue.replace(/\D/g, '').length >= 8;
+  }
+
+  // Validación en tiempo real
+  if (nombre) {
+    nombre.addEventListener('blur', () => {
+      const value = nombre.value.trim();
+      if (value.length < 2) {
+        showError(nombre, 'El nombre debe tener al menos 2 caracteres');
+      } else {
+        clearError(nombre);
+      }
+    });
+
+    nombre.addEventListener('input', () => {
+      if (nombre.value.trim().length >= 2) {
+        clearError(nombre);
+      }
+    });
+  }
+
+  if (email) {
+    email.addEventListener('blur', () => {
+      const value = email.value.trim();
+      if (!value) {
+        showError(email, 'El correo electrónico es obligatorio');
+      } else if (!validateEmail(value)) {
+        showError(email, 'Por favor, ingresa un correo electrónico válido');
+      } else {
+        clearError(email);
+      }
+    });
+
+    email.addEventListener('input', () => {
+      if (validateEmail(email.value.trim())) {
+        clearError(email);
+      }
+    });
+  }
+
+  if (telefono) {
+    telefono.addEventListener('blur', () => {
+      const value = telefono.value.trim();
+      if (value && !validatePhone(value)) {
+        showError(telefono, 'Por favor, ingresa un número de teléfono válido');
+      } else {
+        clearError(telefono);
+      }
+    });
+
+    telefono.addEventListener('input', () => {
+      if (!telefono.value.trim() || validatePhone(telefono.value.trim())) {
+        clearError(telefono);
+      }
+    });
+  }
+
+  if (mensaje) {
+    mensaje.addEventListener('blur', () => {
+      const value = mensaje.value.trim();
+      if (value.length < 10) {
+        showError(mensaje, 'El mensaje debe tener al menos 10 caracteres');
+      } else {
+        clearError(mensaje);
+      }
+    });
+
+    mensaje.addEventListener('input', () => {
+      if (mensaje.value.trim().length >= 10) {
+        clearError(mensaje);
+      }
+    });
+  }
+
+  // Validación al enviar
+  form.addEventListener('submit', (e) => {
+    let isValid = true;
+
+    // Validar nombre
+    if (nombre) {
+      const nombreValue = nombre.value.trim();
+      if (nombreValue.length < 2) {
+        showError(nombre, 'El nombre debe tener al menos 2 caracteres');
+        isValid = false;
+      } else {
+        clearError(nombre);
+      }
+    }
+
+    // Validar email
+    if (email) {
+      const emailValue = email.value.trim();
+      if (!emailValue) {
+        showError(email, 'El correo electrónico es obligatorio');
+        isValid = false;
+      } else if (!validateEmail(emailValue)) {
+        showError(email, 'Por favor, ingresa un correo electrónico válido');
+        isValid = false;
+      } else {
+        clearError(email);
+      }
+    }
+
+    // Validar teléfono
+    if (telefono) {
+      const telefonoValue = telefono.value.trim();
+      if (telefonoValue && !validatePhone(telefonoValue)) {
+        showError(telefono, 'Por favor, ingresa un número de teléfono válido');
+        isValid = false;
+      } else {
+        clearError(telefono);
+      }
+    }
+
+    // Validar mensaje
+    if (mensaje) {
+      const mensajeValue = mensaje.value.trim();
+      if (mensajeValue.length < 10) {
+        showError(mensaje, 'El mensaje debe tener al menos 10 caracteres');
+        isValid = false;
+      } else {
+        clearError(mensaje);
+      }
+    }
+
+    if (!isValid) {
+      e.preventDefault();
+      // Scroll al primer error
+      const firstError = form.querySelector('.error');
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstError.focus();
+      }
+    }
+  });
+}
+
+/* ===== Cambio de Tema (Claro/Oscuro) ===== */
+function updateLogos(theme) {
+  const homeLogos = document.querySelectorAll('.home-logo');
+  
+  // Siempre usar logo.svg en ambos temas
+  homeLogos.forEach(logo => {
+    logo.src = './img/logo.svg';
+  });
+}
+
+function setupThemeToggle() {
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+  const html = document.documentElement;
+  
+  if (!themeToggle || !themeIcon) return;
+
+  // Cargar tema guardado o usar tema oscuro por defecto
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  if (savedTheme === 'light') {
+    html.setAttribute('data-theme', 'light');
+    themeIcon.classList.remove('fa-moon');
+    themeIcon.classList.add('fa-sun');
+    updateLogos('light');
+  } else {
+    html.setAttribute('data-theme', 'dark');
+    themeIcon.classList.remove('fa-sun');
+    themeIcon.classList.add('fa-moon');
+    updateLogos('dark');
+  }
+
+  // Cambiar tema al hacer clic
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    // Cambiar icono
+    if (newTheme === 'light') {
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+    } else {
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+    }
+    
+    // Actualizar logos
+    updateLogos(newTheme);
+  });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   applyChromeHeights();
   setupMenu();
   setupScrollAnimations();
   setupMenuTransparency();
+  setupFormValidation();
+  setupThemeToggle();
   // Recalcular en resize por si el alto cambia (responsive)
   window.addEventListener('resize', applyChromeHeights);
   
@@ -168,7 +418,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     document.body.classList.add('page-loaded');
   }, 50);
-});
+    });
 
 
 
