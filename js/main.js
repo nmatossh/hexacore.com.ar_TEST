@@ -8,7 +8,6 @@ function applyChromeHeights() {
   const bottomBar = document.querySelector('.bottom-bar');
   
   if (!menu || !bottomBar) {
-    console.warn('Elementos del menú o footer no encontrados, usando valores de respaldo');
     return;
   }
   
@@ -29,7 +28,6 @@ function setupMenu() {
   const hamburger = document.getElementById('hamburger');
   const menuLinks = document.querySelector('#menu .menu-links');
   if (!hamburger || !menuLinks) {
-    console.warn('Elementos del menú no encontrados');
     return;
   }
 
@@ -70,17 +68,39 @@ function setupMenu() {
     }
   });
 
+  // Función para cerrar el menú completamente
+  function closeMenu() {
+    menuLinks.dataset.visible = 'false';
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    // Esperar a que termine la animación antes de ocultar
+    setTimeout(() => {
+      if (window.innerWidth <= 900) {
+        menuLinks.style.display = 'none';
+      }
+    }, 300);
+  }
+
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 900) {
+    const isMobile = window.innerWidth <= 900;
+    
+    if (!isMobile) {
+      // Modo desktop: mostrar menú normal y cerrar cualquier estado de móvil
       menuLinks.style.display = 'flex';
       menuLinks.dataset.visible = 'false';
       hamburger.classList.remove('active');
       hamburger.setAttribute('aria-expanded', 'false');
     } else {
-      menuLinks.style.display = 'none';
-      menuLinks.dataset.visible = 'false';
-      hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', 'false');
+      // Modo móvil: cerrar el menú si está abierto
+      if (menuLinks.dataset.visible === 'true') {
+        closeMenu();
+      } else {
+        // Si ya está cerrado, solo asegurar que esté oculto
+        menuLinks.style.display = 'none';
+        menuLinks.dataset.visible = 'false';
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
     }
   });
 }
@@ -88,8 +108,8 @@ function setupMenu() {
 /* ===== Animaciones de Scroll ===== */
 function setupScrollAnimations() {
   const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.15,
+    rootMargin: '0px 0px -80px 0px'
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -367,8 +387,12 @@ function setupThemeToggle() {
   
   if (!themeToggle || !themeIcon) return;
 
-  // Cargar tema guardado o usar tema oscuro por defecto
-  const savedTheme = localStorage.getItem('theme') || 'dark';
+  // Detectar preferencia del sistema
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const systemTheme = prefersDark ? 'dark' : 'light';
+
+  // Cargar tema guardado, o usar preferencia del sistema, o tema oscuro por defecto
+  const savedTheme = localStorage.getItem('theme') || systemTheme;
   if (savedTheme === 'light') {
     html.setAttribute('data-theme', 'light');
     themeIcon.classList.remove('fa-moon');
@@ -386,6 +410,9 @@ function setupThemeToggle() {
     const currentTheme = html.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     
+    // Optimización: agregar will-change temporalmente para mejor rendimiento
+    document.body.style.willChange = 'background-color, color';
+    
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     
@@ -400,7 +427,28 @@ function setupThemeToggle() {
     
     // Actualizar logos
     updateLogos(newTheme);
+    
+    // Remover will-change después de la transición para liberar recursos
+    setTimeout(() => {
+      document.body.style.willChange = 'auto';
+    }, 350);
   });
+}
+
+// Manejo de errores para imágenes rotas
+window.handleImageError = function(img) {
+  // Ocultar la imagen si falla al cargar
+  img.style.display = 'none';
+  // Opcional: mostrar un placeholder o mensaje
+  // Por ahora solo ocultamos para no romper el layout
+};
+
+// Actualizar año del copyright automáticamente
+function updateCopyrightYear() {
+  const yearElement = document.getElementById('current-year');
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -410,6 +458,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setupMenuTransparency();
   setupFormValidation();
   setupThemeToggle();
+  updateCopyrightYear();
   // Recalcular en resize por si el alto cambia (responsive)
   window.addEventListener('resize', applyChromeHeights);
   

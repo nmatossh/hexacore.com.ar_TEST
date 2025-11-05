@@ -3,7 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hexacore - Soluciones tecnológicas integrales para empresas. Especialistas en infraestructura IT, seguridad informática, migración a la nube, redes y soporte técnico. Más de 15 años de experiencia ayudando a empresas a optimizar sus procesos tecnológicos.">
   <title>Hexacore | Soluciones & Consultoría IT</title>
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hexacore.com.ar/">
+  <meta property="og:title" content="Hexacore | Soluciones & Consultoría IT">
+  <meta property="og:description" content="Hexacore - Soluciones tecnológicas integrales para empresas. Especialistas en infraestructura IT, seguridad informática, migración a la nube, redes y soporte técnico. Más de 15 años de experiencia ayudando a empresas a optimizar sus procesos tecnológicos.">
+  <meta property="og:image" content="https://hexacore.com.ar/img/logo-og.svg">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://hexacore.com.ar/">
+  <meta name="twitter:title" content="Hexacore | Soluciones & Consultoría IT">
+  <meta name="twitter:description" content="Hexacore - Soluciones tecnológicas integrales para empresas. Especialistas en infraestructura IT, seguridad informática, migración a la nube, redes y soporte técnico. Más de 15 años de experiencia ayudando a empresas a optimizar sus procesos tecnológicos.">
+  <meta name="twitter:image" content="https://hexacore.com.ar/img/logo-og.svg">
+  
   <link rel="icon" type="image/svg+xml" href="./img/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,8 +27,7 @@
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"
-        onerror="this.onerror=null;this.href='css/font-awesome-fallback.css';">
+        crossorigin="anonymous" referrerpolicy="no-referrer">
   <meta name="color-scheme" content="dark light">
 </head>
 <body>
@@ -21,7 +36,7 @@
       <div class="menu-container">
         <div class="menu-logo">
           <a href="#section1">
-            <img src="./img/header.svg" alt="Hexacore" class="header-logo">
+            <img src="./img/header.svg" alt="Hexacore" class="header-logo" onerror="handleImageError(this)">
           </a>
         </div>
         <button id="hamburger" class="hamburger" type="button" aria-label="Abrir menú" aria-expanded="false">&#9776;</button>
@@ -44,7 +59,7 @@
     <section id="section1" class="featured-section">
       <div class="home-content-grid">
         <div class="home-logo-section slide-in-left">
-          <img src="./img/logo.svg" alt="Hexacore" class="home-logo">
+          <img src="./img/logo.svg" alt="Hexacore" class="home-logo" onerror="handleImageError(this)">
         </div>
         <div class="home-text-section slide-in-right">
           <h3>Bienvenidos a Hexacore</h3>
@@ -70,7 +85,7 @@
           <div class="team-member slide-in-left">
             <div class="member-photo">
               <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Nicolás">
-                <img src="./img/team/opm.png" alt="Nicolás" class="member-image">
+                <img src="./img/team/opm.png" alt="Nicolás" class="member-image" onerror="handleImageError(this)">
               </a>
             </div>
             <div class="member-info">
@@ -83,7 +98,7 @@
           <div class="team-member slide-in-right">
             <div class="member-photo">
               <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Mariana">
-                <img src="./img/team/opw.png" alt="Mariana" class="member-image">
+                <img src="./img/team/opw.png" alt="Mariana" class="member-image" onerror="handleImageError(this)">
               </a>
             </div>
             <div class="member-info">
@@ -96,7 +111,7 @@
           <div class="team-member slide-in-left">
             <div class="member-photo">
               <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Hexa-Bot">
-                <img src="./img/team/bot.png" alt="Hexa-Bot" class="member-image">
+                <img src="./img/team/bot.png" alt="Hexa-Bot" class="member-image" onerror="handleImageError(this)">
               </a>
             </div>
             <div class="member-info">
@@ -109,7 +124,7 @@
           <div class="team-member slide-in-right">
             <div class="member-photo">
               <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Delfina">
-                <img src="./img/team/opw.png" alt="Delfina" class="member-image">
+                <img src="./img/team/opw.png" alt="Delfina" class="member-image" onerror="handleImageError(this)">
               </a>
             </div>
             <div class="member-info">
@@ -256,12 +271,12 @@
         <div class="clients-single-card">
           <div class="clients-content">
             <div class="client-item slide-in-left">
-              <img src="./img/logos/avast.svg" alt="Avast" class="client-logo">
+              <img src="./img/logos/avast.svg" alt="Avast" class="client-logo" onerror="handleImageError(this)">
               <span>Avast</span>
             </div>
             
             <div class="client-item slide-in-right">
-              <img src="./img/logos/kaspersky.svg" alt="Kaspersky" class="client-logo">
+              <img src="./img/logos/kaspersky.svg" alt="Kaspersky" class="client-logo" onerror="handleImageError(this)">
               <span>Kaspersky</span>
             </div>
             
@@ -318,45 +333,78 @@
           <h3>Envíanos tu Consulta</h3>
           <form class="contact-form" action="#" method="POST">
             <div class="form-group">
-              <label for="nombre">Nombre Completo *</label>
-              <input type="text" id="nombre" name="nombre" required>
+              <label for="nombre">Nombre *</label>
+              <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
             </div>
             
             <div class="form-group">
-              <label for="empresa">Empresa</label>
-              <input type="text" id="empresa" name="empresa">
+              <label for="empresa">Empresa u Organización <span style="font-weight: normal; color: var(--text-muted); font-size: 0.85rem;">(opcional)</span></label>
+              <input type="text" id="empresa" name="empresa" placeholder="Si sos particular, podés dejar este campo vacío">
             </div>
             
             <div class="form-group">
-              <label for="email">Correo Electrónico *</label>
-              <input type="email" id="email" name="email" required>
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="tu@email.com">
             </div>
             
             <div class="form-group">
-              <label for="telefono">Teléfono</label>
-              <input type="tel" id="telefono" name="telefono">
+              <label for="telefono">Teléfono <span style="font-weight: normal; color: var(--text-muted); font-size: 0.85rem;">(opcional)</span></label>
+              <div class="phone-input-group">
+                <select id="codigo-pais" name="codigo-pais" class="phone-code">
+                  <option value="+54" selected>🇦🇷 +54</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+55">🇧🇷 +55</option>
+                  <option value="+56">🇨🇱 +56</option>
+                  <option value="+57">🇨🇴 +57</option>
+                  <option value="+51">🇵🇪 +51</option>
+                  <option value="+52">🇲🇽 +52</option>
+                  <option value="+58">🇻🇪 +58</option>
+                  <option value="+34">🇪🇸 +34</option>
+                  <option value="+33">🇫🇷 +33</option>
+                  <option value="+39">🇮🇹 +39</option>
+                  <option value="+49">🇩🇪 +49</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+591">🇧🇴 +591</option>
+                  <option value="+593">🇪🇨 +593</option>
+                  <option value="+595">🇵🇾 +595</option>
+                  <option value="+598">🇺🇾 +598</option>
+                  <option value="+506">🇨🇷 +506</option>
+                  <option value="+507">🇵🇦 +507</option>
+                  <option value="+503">🇸🇻 +503</option>
+                  <option value="+502">🇬🇹 +502</option>
+                  <option value="+504">🇭🇳 +504</option>
+                  <option value="+505">🇳🇮 +505</option>
+                  <option value="+509">🇭🇹 +509</option>
+                  <option value="+53">🇨🇺 +53</option>
+                  <option value="+592">🇬🇾 +592</option>
+                  <option value="+597">🇸🇷 +597</option>
+                </select>
+                <input type="tel" id="telefono" name="telefono" class="phone-number" placeholder="11 1234-5678">
+              </div>
             </div>
             
             <div class="form-group">
-              <label for="servicio">Servicio de Interés</label>
-              <select id="servicio" name="servicio">
-                <option value="">Seleccionar servicio</option>
-                <option value="infraestructura">Infraestructura</option>
-                <option value="seguridad">Seguridad</option>
-                <option value="cloud">Cloud</option>
-                <option value="soporte">Soporte Técnico</option>
-                <option value="redes">Redes</option>
-                <option value="bases-datos">Bases de Datos</option>
+              <label for="consulta">¿En qué podemos ayudarte? <span style="font-weight: normal; color: var(--text-muted); font-size: 0.85rem;">(opcional)</span></label>
+              <select id="consulta" name="consulta">
+                <option value="">Selecciona una opción</option>
                 <option value="consulta-general">Consulta General</option>
+                <option value="presupuesto">Solicitar Presupuesto</option>
+                <option value="infraestructura">Infraestructura IT</option>
+                <option value="seguridad">Seguridad Informática</option>
+                <option value="redes">Redes y Conectividad</option>
+                <option value="bases-datos">Bases de Datos</option>
+                <option value="cloud">Migración a la Nube</option>
+                <option value="soporte">Soporte Técnico</option>
+
               </select>
             </div>
             
             <div class="form-group">
               <label for="mensaje">Mensaje *</label>
-              <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Describe tu consulta o proyecto..."></textarea>
+              <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Contanos tu consulta, proyecto o necesidad. Cuanto más detalles compartas, mejor podremos ayudarte."></textarea>
             </div>
             
-            <button type="submit" class="submit-btn">Enviar Consulta</button>
+            <button type="submit" class="submit-btn">Enviar Mensaje</button>
           </form>
         </div>
 
@@ -423,10 +471,10 @@
 
   <footer class="bottom-bar" role="contentinfo">
     <div class="container">
-      <div class="text">&copy; 2025 Hexacore | Todos los derechos reservados | Diseño Web: <a href="https://www.nicolasmato.com.ar" target="_blank" class="nmato-link">nmato</a></div>
+      <div class="text">&copy; <span id="current-year">2025</span> Hexacore | Todos los derechos reservados | Diseño Web: <a href="https://www.nicolasmato.com.ar" target="_blank" class="nmato-link">nmato</a></div>
       <div class="icons">
-        <a href="https://api.whatsapp.com/send?phone=5491123923138" target="_blank" class="whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         <a href="mailto:hexacore.soporte@gmail.com" class="mail" aria-label="Correo"><i class="fas fa-envelope"></i></a>
+        <a href="https://api.whatsapp.com/send?phone=5491123923138" target="_blank" class="whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         <a href="https://www.instagram.com/hexacore.it/" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="https://www.facebook.com/hexacore.it" target="_blank" class="facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
       </div>
