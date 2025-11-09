@@ -2,6 +2,8 @@
 // y las expone como variables CSS para evitar solapamientos o huecos.
 // Si el JavaScript no se ejecuta, se usan los valores de respaldo en CSS.
 
+const MOBILE_BREAKPOINT = 1100;
+
 function applyChromeHeights() {
   const root = document.documentElement;
   const menu = document.getElementById('menu');
@@ -39,11 +41,12 @@ function setupMenu() {
     
     if (visible) {
       // Cerrar menú
-      menuLinks.dataset.visible = 'false';
-      hamburger.classList.remove('active');
+      closeMenu();
     } else {
       // Abrir menú
       menuLinks.style.display = 'flex';
+      document.body.classList.add('menu-open');
+      menuLinks.scrollTop = 0;
       // Pequeño delay para que el display se aplique antes de la animación
       setTimeout(() => {
         menuLinks.dataset.visible = 'true';
@@ -57,14 +60,8 @@ function setupMenu() {
 
   // Cerrar menú al hacer clic en un enlace (solo en móvil)
   menuLinks.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A' && window.innerWidth <= 900) {
-      menuLinks.dataset.visible = 'false';
-      hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', 'false');
-      // Ocultar después de la animación
-      setTimeout(() => {
-        menuLinks.style.display = 'none';
-      }, 300);
+    if (e.target.tagName === 'A' && window.innerWidth <= MOBILE_BREAKPOINT) {
+      closeMenu();
     }
   });
 
@@ -73,16 +70,17 @@ function setupMenu() {
     menuLinks.dataset.visible = 'false';
     hamburger.classList.remove('active');
     hamburger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
     // Esperar a que termine la animación antes de ocultar
     setTimeout(() => {
-      if (window.innerWidth <= 900) {
+      if (window.innerWidth <= MOBILE_BREAKPOINT) {
         menuLinks.style.display = 'none';
       }
     }, 300);
   }
 
   window.addEventListener('resize', () => {
-    const isMobile = window.innerWidth <= 900;
+    const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
     
     if (!isMobile) {
       // Modo desktop: mostrar menú normal y cerrar cualquier estado de móvil
@@ -90,6 +88,7 @@ function setupMenu() {
       menuLinks.dataset.visible = 'false';
       hamburger.classList.remove('active');
       hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
     } else {
       // Modo móvil: cerrar el menú si está abierto
       if (menuLinks.dataset.visible === 'true') {
@@ -100,6 +99,7 @@ function setupMenu() {
         menuLinks.dataset.visible = 'false';
         hamburger.classList.remove('active');
         hamburger.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
       }
     }
   });
@@ -461,6 +461,33 @@ window.addEventListener('DOMContentLoaded', () => {
   updateCopyrightYear();
   // Recalcular en resize por si el alto cambia (responsive)
   window.addEventListener('resize', applyChromeHeights);
+  window.addEventListener('orientationchange', () => {
+    setTimeout(() => {
+      applyChromeHeights();
+    }, 250);
+
+    const hamburger = document.getElementById('hamburger');
+    const menuLinks = document.querySelector('#menu .menu-links');
+
+    if (!hamburger || !menuLinks) {
+      return;
+    }
+
+    if (window.innerWidth <= MOBILE_BREAKPOINT) {
+      menuLinks.style.display = 'none';
+      menuLinks.dataset.visible = 'false';
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      menuLinks.scrollTop = 0;
+    } else {
+      menuLinks.style.display = 'flex';
+      menuLinks.dataset.visible = 'false';
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+    }
+  });
   
   // Activar animaciones de entrada del menu bar y bottom bar
   // Pequeño delay para que se vea el efecto
