@@ -568,6 +568,7 @@ body.page-loaded .bottom-bar {
 .bottom-bar .icons a.mail:hover     { color: #cd0000; } /* Email */
 .bottom-bar .icons a.instagram:hover{ color: #E1306C; } /* Instagram */
 .bottom-bar .icons a.facebook:hover { color: #1877F2; } /* Facebook */
+.bottom-bar .icons a.linkedin:hover { color: #2476c8; } /* LinkedIn */
 
 /* Enlace nmato en el bottom bar */
 .bottom-bar .text .nmato-link {

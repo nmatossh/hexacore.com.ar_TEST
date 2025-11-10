@@ -395,13 +395,13 @@ function setupThemeToggle() {
   const savedTheme = localStorage.getItem('theme') || systemTheme;
   if (savedTheme === 'light') {
     html.setAttribute('data-theme', 'light');
-    themeIcon.classList.remove('fa-moon');
-    themeIcon.classList.add('fa-sun');
+    themeIcon.classList.remove('fa-sun');
+    themeIcon.classList.add('fa-moon');
     updateLogos('light');
   } else {
     html.setAttribute('data-theme', 'dark');
-    themeIcon.classList.remove('fa-sun');
-    themeIcon.classList.add('fa-moon');
+    themeIcon.classList.remove('fa-moon');
+    themeIcon.classList.add('fa-sun');
     updateLogos('dark');
   }
 
