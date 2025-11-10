@@ -34,6 +34,49 @@ function setupMenu() {
   }
 
   menuLinks.dataset.visible = 'false';
+  const submenuTriggers = menuLinks.querySelectorAll('.submenu-trigger');
+
+  function closeSubmenus() {
+    submenuTriggers.forEach((trigger) => {
+      const parent = trigger.closest('.has-submenu');
+      trigger.setAttribute('aria-expanded', 'false');
+      if (parent) {
+        parent.dataset.open = 'false';
+      }
+    });
+  }
+
+  submenuTriggers.forEach((trigger) => {
+    const parent = trigger.closest('.has-submenu');
+    if (parent && !parent.dataset.open) {
+      parent.dataset.open = 'false';
+    }
+    trigger.setAttribute('aria-expanded', 'false');
+
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!parent) {
+        return;
+      }
+
+      const isOpen = parent.dataset.open === 'true';
+      if (isOpen) {
+        parent.dataset.open = 'false';
+        trigger.setAttribute('aria-expanded', 'false');
+      } else {
+        closeSubmenus();
+        parent.dataset.open = 'true';
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!menuLinks.contains(event.target)) {
+      closeSubmenus();
+    }
+  });
 
   hamburger.addEventListener('click', (e) => {
     e.preventDefault();
@@ -47,6 +90,7 @@ function setupMenu() {
       menuLinks.style.display = 'flex';
       document.body.classList.add('menu-open');
       menuLinks.scrollTop = 0;
+      closeSubmenus();
       // Pequeño delay para que el display se aplique antes de la animación
       setTimeout(() => {
         menuLinks.dataset.visible = 'true';
@@ -60,6 +104,10 @@ function setupMenu() {
 
   // Cerrar menú al hacer clic en un enlace (solo en móvil)
   menuLinks.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      closeSubmenus();
+    }
+
     if (e.target.tagName === 'A' && window.innerWidth <= MOBILE_BREAKPOINT) {
       closeMenu();
     }
@@ -71,6 +119,7 @@ function setupMenu() {
     hamburger.classList.remove('active');
     hamburger.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('menu-open');
+    closeSubmenus();
     // Esperar a que termine la animación antes de ocultar
     setTimeout(() => {
       if (window.innerWidth <= MOBILE_BREAKPOINT) {
@@ -82,6 +131,8 @@ function setupMenu() {
   window.addEventListener('resize', () => {
     const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
     
+    closeSubmenus();
+
     if (!isMobile) {
       // Modo desktop: mostrar menú normal y cerrar cualquier estado de móvil
       menuLinks.style.display = 'flex';
@@ -472,6 +523,15 @@ window.addEventListener('DOMContentLoaded', () => {
     if (!hamburger || !menuLinks) {
       return;
     }
+
+    const submenuTriggers = menuLinks.querySelectorAll('.submenu-trigger');
+    submenuTriggers.forEach((trigger) => {
+      const parent = trigger.closest('.has-submenu');
+      trigger.setAttribute('aria-expanded', 'false');
+      if (parent) {
+        parent.dataset.open = 'false';
+      }
+    });
 
     if (window.innerWidth <= MOBILE_BREAKPOINT) {
       menuLinks.style.display = 'none';

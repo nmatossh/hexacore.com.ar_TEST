@@ -46,12 +46,25 @@
         </div>
         <button id="hamburger" class="hamburger" type="button" aria-label="Abrir menú" aria-expanded="false">&#9776;</button>
         <div class="menu-links" data-visible="false">
-          <a href="#section1">Inicio</a>
-          <a href="#section2">Nosotros</a>
-          <a href="#section3">Servicios</a>
-          <a href="#section4">Proyectos</a>
-          <a href="#section5">Clientes</a>
-          <a href="#section6">Contacto</a>
+          <a href="#section1" class="menu-link">Inicio</a>
+          <a href="#section2" class="menu-link">Nosotros</a>
+          <div class="menu-item has-submenu">
+            <a href="#section3" class="menu-link submenu-direct-link">Servicios</a>
+            <button class="menu-link submenu-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+              Servicios <i class="fas fa-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="submenu" role="menu">
+              <a href="#servicio-infraestructura" role="menuitem">Infraestructura</a>
+              <a href="#servicio-seguridad" role="menuitem">Seguridad</a>
+              <a href="#servicio-cloud" role="menuitem">Cloud</a>
+              <a href="#servicio-soporte" role="menuitem">Soporte Técnico</a>
+              <a href="#servicio-redes" role="menuitem">Redes</a>
+              <a href="#servicio-bases" role="menuitem">Bases de Datos</a>
+            </div>
+          </div>
+          <!-- <a href="#section4" class="menu-link">Proyectos</a> -->
+          <a href="#section5" class="menu-link">Clientes</a>
+          <a href="#section6" class="menu-link">Contacto</a>
           <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">
             <i class="fas fa-sun" id="theme-icon"></i>
           </button>
@@ -145,32 +158,32 @@
     <section id="section3" class="featured-section">
       <h2 class="section-title">Nuestros Servicios</h2>
       <div class="services-grid">
-        <div class="service-card slide-in-left">
+        <div class="service-card slide-in-left" id="servicio-infraestructura">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-server"></i></div>
           <h3>Infraestructura</h3>
           <p>Soluciones completas de infraestructura tecnológica para empresas.</p>
         </div>
-        <div class="service-card slide-in-right">
+        <div class="service-card slide-in-right" id="servicio-seguridad">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
           <h3>Seguridad</h3>
           <p>Protección avanzada para tus sistemas y datos sensibles.</p>
         </div>
-        <div class="service-card slide-in-left">
+        <div class="service-card slide-in-left" id="servicio-cloud">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-cloud"></i></div>
           <h3>Cloud</h3>
           <p>Migración y gestión de entornos cloud a medida.</p>
         </div>
-        <div class="service-card slide-in-right">
+        <div class="service-card slide-in-right" id="servicio-soporte">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-hard-drive"></i></div>
           <h3>Soporte Técnico</h3>
           <p>Instalación de sistemas operativos y mantenimiento general.</p>
         </div>
-        <div class="service-card slide-in-left">
+        <div class="service-card slide-in-left" id="servicio-redes">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-network-wired"></i></div>
           <h3>Redes</h3>
           <p>Configuración y mantenimiento de infraestructura de red empresarial.</p>
         </div>
-        <div class="service-card slide-in-right">
+        <div class="service-card slide-in-right" id="servicio-bases">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-database"></i></div>
           <h3>Bases de Datos</h3>
           <p>Administración y optimización de bases de datos para tu empresa.</p>
@@ -178,10 +191,10 @@
       </div>
     </section>
 
+    <!--
     <section id="section4" class="featured-section">
       <h2 class="section-title">Nuestros Proyectos</h2>
       
-      <!-- Proyectos destacados -->
       <div class="projects-container">
         <div class="project-card slide-in-left">
           <div class="project-icon">
@@ -268,6 +281,7 @@
         </div>
       </div>
     </section>
+    -->
 
     <section id="section5" class="featured-section">
       <!-- Logos de clientes -->
