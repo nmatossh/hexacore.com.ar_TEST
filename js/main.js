@@ -127,7 +127,12 @@ function setupMenu() {
 
   // Cerrar menú al hacer clic en un enlace (solo en móvil)
   menuLinks.addEventListener('click', (e) => {
-    const link = e.target.closest('a');
+    const targetElement = e.target instanceof Element ? e.target : e.target.parentElement;
+    if (!targetElement) {
+      return;
+    }
+
+    const link = targetElement.closest('a');
     if (!link) {
       return;
     }
