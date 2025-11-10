@@ -158,35 +158,143 @@
     <section id="section3" class="featured-section">
       <h2 class="section-title">Nuestros Servicios</h2>
       <div class="services-grid">
-        <div class="service-card slide-in-left" id="servicio-infraestructura">
+        <div class="service-card slide-in-left has-toggle" id="servicio-infraestructura">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-server"></i></div>
           <h3>Infraestructura</h3>
           <p>Soluciones completas de infraestructura tecnológica para empresas.</p>
+          <button
+            class="service-toggle"
+            type="button"
+            data-collapsed-text="Ver más"
+            data-expanded-text="Ver menos"
+            aria-expanded="false"
+            aria-controls="servicio-infraestructura-extra"
+          >
+            Ver más
+          </button>
+          <div class="service-extra" id="servicio-infraestructura-extra" hidden>
+            <p>Diseñamos, implementamos y administramos plataformas resilientes para sostener tus operaciones críticas sin interrupciones.</p>
+            <ul>
+              <li>Arquitecturas híbridas on-premise y cloud con planes de crecimiento escalable.</li>
+              <li>Monitoreo 24/7 con tableros personalizados y alertas proactivas.</li>
+              <li>Planes de continuidad operativa y recuperación ante desastres listos para ejecutar.</li>
+            </ul>
+          </div>
         </div>
-        <div class="service-card slide-in-right" id="servicio-seguridad">
+        <div class="service-card slide-in-right has-toggle" id="servicio-seguridad">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
           <h3>Seguridad</h3>
           <p>Protección avanzada para tus sistemas y datos sensibles.</p>
+          <button
+            class="service-toggle"
+            type="button"
+            data-collapsed-text="Ver más"
+            data-expanded-text="Ver menos"
+            aria-expanded="false"
+            aria-controls="servicio-seguridad-extra"
+          >
+            Ver más
+          </button>
+          <div class="service-extra" id="servicio-seguridad-extra" hidden>
+            <p>Fortalecemos tu postura de seguridad revisando procesos, tecnología y cultura para reducir riesgos reales.</p>
+            <ul>
+              <li>Evaluaciones periódicas de vulnerabilidades y pentesting orientado al negocio.</li>
+              <li>Implementación de políticas Zero Trust y gestión de identidades.</li>
+              <li>Respuesta a incidentes con playbooks claros y soporte inmediato del equipo SOC.</li>
+            </ul>
+          </div>
         </div>
-        <div class="service-card slide-in-left" id="servicio-cloud">
+        <div class="service-card slide-in-left has-toggle" id="servicio-cloud">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-cloud"></i></div>
           <h3>Cloud</h3>
           <p>Migración y gestión de entornos cloud a medida.</p>
+          <button
+            class="service-toggle"
+            type="button"
+            data-collapsed-text="Ver más"
+            data-expanded-text="Ver menos"
+            aria-expanded="false"
+            aria-controls="servicio-cloud-extra"
+          >
+            Ver más
+          </button>
+          <div class="service-extra" id="servicio-cloud-extra" hidden>
+            <p>Acompañamos tu adopción de servicios en la nube con un enfoque gradual, seguro y optimizado en costos.</p>
+            <ul>
+              <li>Assessment inicial para definir cargas, dependencias y prioridades de migración.</li>
+              <li>Automatización de despliegues con infraestructura como código y pipelines CI/CD.</li>
+              <li>Optimización continua de consumo y gobernanza multi-cloud.</li>
+            </ul>
+          </div>
         </div>
-        <div class="service-card slide-in-right" id="servicio-soporte">
+        <div class="service-card slide-in-right has-toggle" id="servicio-soporte">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-hard-drive"></i></div>
           <h3>Soporte Técnico</h3>
           <p>Instalación de sistemas operativos y mantenimiento general.</p>
+          <button
+            class="service-toggle"
+            type="button"
+            data-collapsed-text="Ver más"
+            data-expanded-text="Ver menos"
+            aria-expanded="false"
+            aria-controls="servicio-soporte-extra"
+          >
+            Ver más
+          </button>
+          <div class="service-extra" id="servicio-soporte-extra" hidden>
+            <p>Brindamos acompañamiento técnico continuo para asegurar la disponibilidad y el rendimiento de tu parque informático.</p>
+            <ul>
+              <li>Mesa de ayuda con seguimiento de tickets y SLA definidos junto al cliente.</li>
+              <li>Mantenimiento preventivo y correctivo in situ o remoto.</li>
+              <li>Inventario y gestión de activos con reportes periódicos.</li>
+            </ul>
+          </div>
         </div>
-        <div class="service-card slide-in-left" id="servicio-redes">
+        <div class="service-card slide-in-left has-toggle" id="servicio-redes">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-network-wired"></i></div>
           <h3>Redes</h3>
           <p>Configuración y mantenimiento de infraestructura de red empresarial.</p>
+          <button
+            class="service-toggle"
+            type="button"
+            data-collapsed-text="Ver más"
+            data-expanded-text="Ver menos"
+            aria-expanded="false"
+            aria-controls="servicio-redes-extra"
+          >
+            Ver más
+          </button>
+          <div class="service-extra" id="servicio-redes-extra" hidden>
+            <p>Garantizamos conectividad estable y segura, optimizando el desempeño de tu red sin importar la escala.</p>
+            <ul>
+              <li>Diseño de topologías LAN/WAN y segmentación avanzada con VLAN y QoS.</li>
+              <li>Implementación de WiFi corporativo con análisis de cobertura y roaming inteligente.</li>
+              <li>Supervisión y tuning de tráfico para prevenir cuellos de botella y caídas.</li>
+            </ul>
+          </div>
         </div>
-        <div class="service-card slide-in-right" id="servicio-bases">
+        <div class="service-card slide-in-right has-toggle" id="servicio-bases">
           <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-database"></i></div>
           <h3>Bases de Datos</h3>
           <p>Administración y optimización de bases de datos para tu empresa.</p>
+          <button
+            class="service-toggle"
+            type="button"
+            data-collapsed-text="Ver más"
+            data-expanded-text="Ver menos"
+            aria-expanded="false"
+            aria-controls="servicio-bases-extra"
+          >
+            Ver más
+          </button>
+          <div class="service-extra" id="servicio-bases-extra" hidden>
+            <p>Velamos por la disponibilidad y el rendimiento de tus datos críticos, desde la planificación hasta la operación.</p>
+            <ul>
+              <li>Diseño de modelos relacionales y no relacionales alineados al negocio.</li>
+              <li>Tareas de performance tuning, indexación y análisis de consultas.</li>
+              <li>Backups automatizados, replicación y planes de recuperación ante fallas.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -327,16 +435,6 @@
             <div class="client-item slide-in-right">
               <i class="fas fa-graduation-cap"></i>
               <span>Educativa</span>
-            </div>
-            
-            <div class="client-item slide-in-left">
-              <i class="fas fa-utensils"></i>
-              <span>Gastronómico</span>
-            </div>
-            
-            <div class="client-item slide-in-right">
-              <i class="fas fa-plane"></i>
-              <span>Turismo</span>
             </div>
             
           </div>

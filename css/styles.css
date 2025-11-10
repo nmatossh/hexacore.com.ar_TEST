@@ -26,6 +26,12 @@
 
 html {
   overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 /* Tema Claro */
@@ -64,6 +70,12 @@ html, body {
   transition: background-color 0.3s ease, color 0.3s ease;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 /* ===== Animaciones de entrada ===== */
@@ -99,7 +111,7 @@ nav#menu {
 
 /* Transparencia del menu bar cuando se hace scroll o se hace click en enlaces */
 nav#menu.transparent {
-  background-color: rgba(29, 29, 29, 0.85);
+  background-color: rgba(29, 29, 29, 0.9);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -110,7 +122,7 @@ nav#menu.transparent {
 }
 
 [data-theme="light"] nav#menu.transparent {
-  background-color: rgba(29, 29, 29, 0.85);
+  background-color: rgba(29, 29, 29, 0.9);
 }
 
 /* Animación de entrada cuando la página carga */
@@ -613,7 +625,7 @@ html { scroll-padding-top: var(--nav-h, var(--nav-height)); }
 
 /* Transparencia de la bottom bar cuando se hace scroll o se hace click en iconos */
 .bottom-bar.transparent {
-  background-color: rgba(29, 29, 29, 0.85);
+  background-color: rgba(29, 29, 29, 0.9);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -624,7 +636,7 @@ html { scroll-padding-top: var(--nav-h, var(--nav-height)); }
 }
 
 [data-theme="light"] .bottom-bar.transparent {
-  background-color: rgba(29, 29, 29, 0.85);
+  background-color: rgba(29, 29, 29, 0.9);
 }
 
 /* Animación de entrada cuando la página carga */
@@ -821,6 +833,7 @@ body.page-loaded .bottom-bar {
   flex-direction: column;
   gap: 0.625rem;
   contain: layout style paint;
+  scroll-margin-top: calc(var(--nav-h, var(--nav-height)) + 1.875rem);
 }
 
 .service-icon {
@@ -856,6 +869,72 @@ body.page-loaded .bottom-bar {
 
 .service-card:hover .service-icon i {
   transform: scale(1.1) rotate(5deg);
+}
+
+.service-card .service-toggle {
+  align-self: center;
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.6rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent-color);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.service-card .service-toggle:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(152, 43, 43, 0.35);
+}
+
+.service-card .service-toggle:active {
+  transform: translateY(0);
+}
+
+.service-card .service-toggle:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.service-card .service-extra {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  text-align: left;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.service-card .service-extra[hidden] {
+  display: none;
+}
+
+.service-card .service-extra ul {
+  margin: 0.75rem 0 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.5rem;
+  list-style: disc;
+}
+
+[data-theme="light"] .service-card .service-extra {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .service-card .service-toggle:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
 }
 
 /* ===== Projects Section ===== */

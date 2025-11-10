@@ -208,10 +208,17 @@ function setupMenuTransparency() {
   const bottomBar = document.querySelector('.bottom-bar');
   if (!menu || !bottomBar) return;
 
+  const getScrollTop = () => {
+    const winOffset = typeof window.pageYOffset === 'number' ? window.pageYOffset
+      : (typeof window.scrollY === 'number' ? window.scrollY : 0);
+    const docElement = document.documentElement ? document.documentElement.scrollTop : 0;
+    const body = document.body ? document.body.scrollTop : 0;
+    return Math.max(winOffset, docElement, body);
+  };
+
   // Detectar scroll
-  let lastScrollTop = 0;
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const onScroll = () => {
+    const scrollTop = getScrollTop();
     
     // Si está en la parte superior (top 0-10px), quitar transparencia
     if (scrollTop <= 10) {
@@ -222,8 +229,24 @@ function setupMenuTransparency() {
       menu.classList.add('transparent');
       bottomBar.classList.add('transparent');
     }
-    lastScrollTop = scrollTop;
-  }, false);
+  };
+
+  const scrollTargets = [window, document];
+  if (document.documentElement) {
+    scrollTargets.push(document.documentElement);
+  }
+  if (document.body) {
+    scrollTargets.push(document.body);
+  }
+
+  scrollTargets.forEach((target) => {
+    if (target && typeof target.addEventListener === 'function') {
+      target.addEventListener('scroll', onScroll, { passive: true });
+    }
+  });
+
+  // Evaluar estado inicial
+  requestAnimationFrame(onScroll);
 
   // Detectar clicks en enlaces del menú
   const menuLinks = document.querySelectorAll('#menu .menu-links a');
@@ -232,8 +255,8 @@ function setupMenuTransparency() {
       menu.classList.add('transparent');
       bottomBar.classList.add('transparent');
       // Después de 1 segundo, verificar si está en el top
-    setTimeout(() => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setTimeout(() => {
+        const scrollTop = getScrollTop();
         if (scrollTop <= 10) {
           menu.classList.remove('transparent');
           bottomBar.classList.remove('transparent');
@@ -250,12 +273,43 @@ function setupMenuTransparency() {
       bottomBar.classList.add('transparent');
       // Después de 1 segundo, verificar si está en el top
       setTimeout(() => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollTop = getScrollTop();
         if (scrollTop <= 10) {
           menu.classList.remove('transparent');
           bottomBar.classList.remove('transparent');
         }
       }, 1000);
+    });
+  });
+}
+
+/* ===== Toggle de información ampliada en Servicios ===== */
+function setupServiceToggles() {
+  const serviceCards = document.querySelectorAll('.service-card.has-toggle');
+
+  serviceCards.forEach((card) => {
+    const toggleButton = card.querySelector('.service-toggle');
+    const extraContent = card.querySelector('.service-extra');
+
+    if (!toggleButton || !extraContent) {
+      return;
+    }
+
+    const collapsedLabel = toggleButton.dataset.collapsedText || 'Ver más';
+    const expandedLabel = toggleButton.dataset.expandedText || 'Ver menos';
+
+    const setState = (expanded) => {
+      card.classList.toggle('expanded', expanded);
+      toggleButton.setAttribute('aria-expanded', expanded);
+      extraContent.hidden = !expanded;
+      toggleButton.textContent = expanded ? expandedLabel : collapsedLabel;
+    };
+
+    setState(false);
+
+    toggleButton.addEventListener('click', () => {
+      const isExpanded = card.classList.contains('expanded');
+      setState(!isExpanded);
     });
   });
 }
@@ -530,6 +584,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setupMenu();
   setupScrollAnimations();
   setupMenuTransparency();
+  setupServiceToggles();
   setupFormValidation();
   setupThemeToggle();
   updateCopyrightYear();
