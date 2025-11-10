@@ -46,6 +46,14 @@ function setupMenu() {
     });
   }
 
+  const submenuDirectLinks = menuLinks.querySelectorAll('.submenu-direct-link');
+  submenuDirectLinks.forEach((directLink) => {
+    directLink.addEventListener('click', () => {
+      closeSubmenus();
+      closeMenu();
+    });
+  });
+
   submenuTriggers.forEach((trigger) => {
     const parent = trigger.closest('.has-submenu');
     if (parent && !parent.dataset.open) {
@@ -57,6 +65,21 @@ function setupMenu() {
       event.preventDefault();
       event.stopPropagation();
       if (!parent) {
+        return;
+      }
+
+      const targetSelector = trigger.dataset.target;
+      const isDesktop = window.innerWidth > MOBILE_BREAKPOINT;
+      if (isDesktop && targetSelector) {
+        closeSubmenus();
+        parent.dataset.open = 'false';
+        trigger.setAttribute('aria-expanded', 'false');
+        const target = document.querySelector(targetSelector);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.location.hash = targetSelector;
+        }
         return;
       }
 
