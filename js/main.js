@@ -127,28 +127,37 @@ function setupMenu() {
 
   // Cerrar menú al hacer clic en un enlace (solo en móvil)
   menuLinks.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') {
-      closeSubmenus();
+    const link = e.target.closest('a');
+    if (!link) {
+      return;
     }
 
-    if (e.target.tagName === 'A' && window.innerWidth <= MOBILE_BREAKPOINT) {
-      closeMenu();
+    closeSubmenus();
+
+    if (window.innerWidth <= MOBILE_BREAKPOINT) {
+      closeMenu(true);
     }
   });
 
   // Función para cerrar el menú completamente
-  function closeMenu() {
+  function closeMenu(immediate = false) {
     menuLinks.dataset.visible = 'false';
     hamburger.classList.remove('active');
     hamburger.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('menu-open');
     closeSubmenus();
     // Esperar a que termine la animación antes de ocultar
-    setTimeout(() => {
-      if (window.innerWidth <= MOBILE_BREAKPOINT) {
+    if (window.innerWidth <= MOBILE_BREAKPOINT) {
+      if (immediate) {
         menuLinks.style.display = 'none';
+      } else {
+        setTimeout(() => {
+          if (menuLinks.dataset.visible === 'false') {
+            menuLinks.style.display = 'none';
+          }
+        }, 300);
       }
-    }, 300);
+    }
   }
 
   window.addEventListener('resize', () => {
