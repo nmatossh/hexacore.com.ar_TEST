@@ -28,6 +28,9 @@ function applyChromeHeights() {
 // Menú hamburguesa
 function setupMenu() {
   const menuLinks = document.querySelector('#menu .menu-links');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
   if (!menuLinks) {
     return;
   }
@@ -104,6 +107,76 @@ function setupMenu() {
       closeSubmenus();
     });
   });
+
+  if (hamburger && mobileMenu) {
+    let mobileMenuCloseTimeout = null;
+
+    const openMobileMenu = () => {
+      if (mobileMenuCloseTimeout) {
+        clearTimeout(mobileMenuCloseTimeout);
+        mobileMenuCloseTimeout = null;
+      }
+      mobileMenu.hidden = false;
+      requestAnimationFrame(() => {
+        mobileMenu.classList.add('open');
+      });
+      hamburger.setAttribute('aria-expanded', 'true');
+    };
+
+    const closeMobileMenu = () => {
+      if (mobileMenuCloseTimeout) {
+        clearTimeout(mobileMenuCloseTimeout);
+      }
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenuCloseTimeout = setTimeout(() => {
+        mobileMenu.hidden = true;
+        mobileMenuCloseTimeout = null;
+      }, 220);
+    };
+
+    const toggleMobileMenu = () => {
+      const isOpen = mobileMenu.classList.contains('open');
+      if (isOpen) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    };
+
+    const handleDocumentClick = (event) => {
+      if (!mobileMenu.classList.contains('open')) {
+        return;
+      }
+      if (hamburger.contains(event.target) || mobileMenu.contains(event.target)) {
+        return;
+      }
+      closeMobileMenu();
+    };
+
+    hamburger.addEventListener('click', (event) => {
+      event.preventDefault();
+      toggleMobileMenu();
+    });
+
+    document.addEventListener('click', handleDocumentClick);
+
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        closeMobileMenu();
+      });
+    });
+
+    const handleResizeForMobileMenu = () => {
+      if (window.innerWidth > MOBILE_BREAKPOINT) {
+        closeMobileMenu();
+      }
+    };
+
+    window.addEventListener('resize', handleResizeForMobileMenu);
+    window.addEventListener('orientationchange', handleResizeForMobileMenu);
+  }
 
   window.addEventListener('resize', () => {
     closeSubmenus();
