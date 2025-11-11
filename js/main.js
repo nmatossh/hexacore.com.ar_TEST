@@ -125,36 +125,14 @@ function setupMenu() {
     hamburger.setAttribute('aria-expanded', !visible);
   });
 
-  // Cerrar menú al hacer clic en un enlace (maneja desplazamiento suave en móvil)
+  // Cerrar menú al hacer clic en un enlace
   const allMenuLinks = menuLinks.querySelectorAll('a');
   allMenuLinks.forEach((link) => {
-    link.addEventListener('click', (event) => {
-      const href = link.getAttribute('href');
-      const isHashLink = href && href.startsWith('#');
-
-      if (isHashLink) {
-        const target = document.querySelector(href);
-
-        if (target) {
-          event.preventDefault();
-
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.replaceState(null, '', href);
-          closeSubmenus();
-
-          if (window.innerWidth <= MOBILE_BREAKPOINT) {
-            setTimeout(() => {
-              closeMenu({ immediate: true });
-            }, 250);
-          }
-          return;
-        }
-      }
-
+    link.addEventListener('click', () => {
       closeSubmenus();
 
       if (window.innerWidth <= MOBILE_BREAKPOINT) {
-        closeMenu({ immediate: true });
+        closeMenu();
       }
     });
   });
