@@ -125,30 +125,117 @@ function setupMenu() {
     hamburger.setAttribute('aria-expanded', !visible);
   });
 
-  // Cerrar menú al hacer clic en un enlace (solo en móvil)
-  menuLinks.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') {
-      closeSubmenus();
-    }
+  // Cerrar menú al hacer clic en un enlace (maneja desplazamiento suave en móvil)
+  const allMenuLinks = menuLinks.querySelectorAll('a');
+  allMenuLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const href = link.getAttribute('href');
+      const isHashLink = href && href.startsWith('#');
 
-    if (e.target.tagName === 'A' && window.innerWidth <= MOBILE_BREAKPOINT) {
-      closeMenu();
-    }
+      if (isHashLink) {
+        const target = document.querySelector(href);
+
+        if (target) {
+          event.preventDefault();
+
+          const finalizeNavigation = () => {
+            history.replaceState(null, '', href);
+            closeSubmenus();
+
+            if (window.innerWidth <= MOBILE_BREAKPOINT) {
+              closeMenu({ immediate: true });
+            }
+          };
+
+          waitForScrollCompletion(target, finalizeNavigation);
+          return;
+        }
+      }
+
+      closeSubmenus();
+
+      if (window.innerWidth <= MOBILE_BREAKPOINT) {
+        closeMenu({ immediate: true });
+      }
+    });
   });
 
   // Función para cerrar el menú completamente
-  function closeMenu() {
+  function closeMenu(options = {}) {
+    const { immediate = false } = options;
+
     menuLinks.dataset.visible = 'false';
     hamburger.classList.remove('active');
     hamburger.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('menu-open');
     closeSubmenus();
     // Esperar a que termine la animación antes de ocultar
-    setTimeout(() => {
-      if (window.innerWidth <= MOBILE_BREAKPOINT) {
+    if (window.innerWidth <= MOBILE_BREAKPOINT) {
+      if (immediate) {
         menuLinks.style.display = 'none';
+      } else {
+        setTimeout(() => {
+          if (menuLinks.dataset.visible === 'false') {
+            menuLinks.style.display = 'none';
+          }
+        }, 300);
       }
-    }, 300);
+    }
+  }
+
+  function waitForScrollCompletion(target, onComplete) {
+    const supportsSmoothScroll = 'scrollBehavior' in document.documentElement.style;
+
+    if (!supportsSmoothScroll) {
+      target.scrollIntoView({ block: 'start' });
+      onComplete();
+      return;
+    }
+
+    const startScroll = window.pageYOffset
+      || document.documentElement.scrollTop
+      || document.body.scrollTop
+      || 0;
+
+    const targetRect = target.getBoundingClientRect();
+    const targetMargin = parseFloat(getComputedStyle(target).scrollMarginTop || '0');
+    const desiredScroll = startScroll + targetRect.top - targetMargin;
+    const threshold = 4;
+
+    let done = false;
+    let rafId = null;
+    const fallbackTimeout = setTimeout(() => finish(), 900);
+
+    function finish() {
+      if (done) {
+        return;
+      }
+      done = true;
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+      clearTimeout(fallbackTimeout);
+      onComplete();
+    }
+
+    function currentScrollTop() {
+      return window.pageYOffset
+        || document.documentElement.scrollTop
+        || document.body.scrollTop
+        || 0;
+    }
+
+    function handleScroll() {
+      const distance = Math.abs(currentScrollTop() - desiredScroll);
+      if (distance <= threshold) {
+        finish();
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    rafId = requestAnimationFrame(handleScroll);
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   window.addEventListener('resize', () => {
