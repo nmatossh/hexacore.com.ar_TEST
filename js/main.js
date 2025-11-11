@@ -164,17 +164,42 @@ function setupMenu() {
     const mobileMenuLinks = mobileMenu.querySelectorAll('a');
     mobileMenuLinks.forEach((link) => {
       link.addEventListener('click', (event) => {
-        const href = link.getAttribute('href');
+        const anchor = event.currentTarget;
+        const href = anchor.getAttribute('href');
         const isHashLink = href && href.startsWith('#');
 
         if (isHashLink) {
           const target = document.querySelector(href);
           if (target) {
             event.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            history.replaceState(null, '', href);
-          } else {
-            window.location.hash = href;
+
+            const startScroll = window.pageYOffset
+              || document.documentElement.scrollTop
+              || document.body.scrollTop
+              || 0;
+
+            closeMobileMenu();
+
+            requestAnimationFrame(() => {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+
+            setTimeout(() => {
+              const endScroll = window.pageYOffset
+                || document.documentElement.scrollTop
+                || document.body.scrollTop
+                || 0;
+
+              const distance = Math.abs(endScroll - startScroll);
+
+              if (distance < 8) {
+                window.location.hash = href;
+              } else {
+                history.replaceState(null, '', href);
+              }
+            }, 500);
+
+            return;
           }
         }
 
