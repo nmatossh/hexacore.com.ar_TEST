@@ -138,16 +138,15 @@ function setupMenu() {
         if (target) {
           event.preventDefault();
 
-          const finalizeNavigation = () => {
-            history.replaceState(null, '', href);
-            closeSubmenus();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.replaceState(null, '', href);
+          closeSubmenus();
 
-            if (window.innerWidth <= MOBILE_BREAKPOINT) {
+          if (window.innerWidth <= MOBILE_BREAKPOINT) {
+            setTimeout(() => {
               closeMenu({ immediate: true });
-            }
-          };
-
-          waitForScrollCompletion(target, finalizeNavigation);
+            }, 250);
+          }
           return;
         }
       }
@@ -183,60 +182,6 @@ function setupMenu() {
     }
   }
 
-  function waitForScrollCompletion(target, onComplete) {
-    const supportsSmoothScroll = 'scrollBehavior' in document.documentElement.style;
-
-    if (!supportsSmoothScroll) {
-      target.scrollIntoView({ block: 'start' });
-      onComplete();
-      return;
-    }
-
-    const startScroll = window.pageYOffset
-      || document.documentElement.scrollTop
-      || document.body.scrollTop
-      || 0;
-
-    const targetRect = target.getBoundingClientRect();
-    const targetMargin = parseFloat(getComputedStyle(target).scrollMarginTop || '0');
-    const desiredScroll = startScroll + targetRect.top - targetMargin;
-    const threshold = 4;
-
-    let done = false;
-    let rafId = null;
-    const fallbackTimeout = setTimeout(() => finish(), 900);
-
-    function finish() {
-      if (done) {
-        return;
-      }
-      done = true;
-      window.removeEventListener('scroll', handleScroll);
-      if (rafId !== null) {
-        cancelAnimationFrame(rafId);
-      }
-      clearTimeout(fallbackTimeout);
-      onComplete();
-    }
-
-    function currentScrollTop() {
-      return window.pageYOffset
-        || document.documentElement.scrollTop
-        || document.body.scrollTop
-        || 0;
-    }
-
-    function handleScroll() {
-      const distance = Math.abs(currentScrollTop() - desiredScroll);
-      if (distance <= threshold) {
-        finish();
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    rafId = requestAnimationFrame(handleScroll);
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
 
   window.addEventListener('resize', () => {
     const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
