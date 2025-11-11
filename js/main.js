@@ -27,13 +27,10 @@ function applyChromeHeights() {
 
 // Menú hamburguesa
 function setupMenu() {
-  const hamburger = document.getElementById('hamburger');
   const menuLinks = document.querySelector('#menu .menu-links');
-  if (!hamburger || !menuLinks) {
+  if (!menuLinks) {
     return;
   }
-
-  menuLinks.dataset.visible = 'false';
   const submenuTriggers = menuLinks.querySelectorAll('.submenu-trigger');
 
   function closeSubmenus() {
@@ -50,7 +47,6 @@ function setupMenu() {
   submenuDirectLinks.forEach((directLink) => {
     directLink.addEventListener('click', () => {
       closeSubmenus();
-      closeMenu();
     });
   });
 
@@ -101,91 +97,16 @@ function setupMenu() {
     }
   });
 
-  hamburger.addEventListener('click', (e) => {
-    e.preventDefault();
-    const visible = menuLinks.dataset.visible === 'true';
-    
-    if (visible) {
-      // Cerrar menú
-      closeMenu();
-    } else {
-      // Abrir menú
-      menuLinks.style.display = 'flex';
-      document.body.classList.add('menu-open');
-      menuLinks.scrollTop = 0;
-      closeSubmenus();
-      // Pequeño delay para que el display se aplique antes de la animación
-      setTimeout(() => {
-        menuLinks.dataset.visible = 'true';
-        hamburger.classList.add('active');
-      }, 10);
-    }
-    
-    // Mejorar accesibilidad
-    hamburger.setAttribute('aria-expanded', !visible);
-  });
-
-  // Cerrar menú al hacer clic en un enlace
+  // Cerrar submenús al hacer clic en un enlace
   const allMenuLinks = menuLinks.querySelectorAll('a');
   allMenuLinks.forEach((link) => {
     link.addEventListener('click', () => {
       closeSubmenus();
-
-      if (window.innerWidth <= MOBILE_BREAKPOINT) {
-        closeMenu();
-      }
     });
   });
 
-  // Función para cerrar el menú completamente
-  function closeMenu(options = {}) {
-    const { immediate = false } = options;
-
-    menuLinks.dataset.visible = 'false';
-    hamburger.classList.remove('active');
-    hamburger.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('menu-open');
-    closeSubmenus();
-    // Esperar a que termine la animación antes de ocultar
-    if (window.innerWidth <= MOBILE_BREAKPOINT) {
-      if (immediate) {
-        menuLinks.style.display = 'none';
-      } else {
-        setTimeout(() => {
-          if (menuLinks.dataset.visible === 'false') {
-            menuLinks.style.display = 'none';
-          }
-        }, 300);
-      }
-    }
-  }
-
-
   window.addEventListener('resize', () => {
-    const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
-    
     closeSubmenus();
-
-    if (!isMobile) {
-      // Modo desktop: mostrar menú normal y cerrar cualquier estado de móvil
-      menuLinks.style.display = 'flex';
-      menuLinks.dataset.visible = 'false';
-      hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('menu-open');
-    } else {
-      // Modo móvil: cerrar el menú si está abierto
-      if (menuLinks.dataset.visible === 'true') {
-        closeMenu();
-      } else {
-        // Si ya está cerrado, solo asegurar que esté oculto
-        menuLinks.style.display = 'none';
-        menuLinks.dataset.visible = 'false';
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('menu-open');
-      }
-    }
   });
 }
 
@@ -604,37 +525,6 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       applyChromeHeights();
     }, 250);
-
-    const hamburger = document.getElementById('hamburger');
-    const menuLinks = document.querySelector('#menu .menu-links');
-
-    if (!hamburger || !menuLinks) {
-      return;
-    }
-
-    const submenuTriggers = menuLinks.querySelectorAll('.submenu-trigger');
-    submenuTriggers.forEach((trigger) => {
-      const parent = trigger.closest('.has-submenu');
-      trigger.setAttribute('aria-expanded', 'false');
-      if (parent) {
-        parent.dataset.open = 'false';
-      }
-    });
-
-    if (window.innerWidth <= MOBILE_BREAKPOINT) {
-      menuLinks.style.display = 'none';
-      menuLinks.dataset.visible = 'false';
-      hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('menu-open');
-      menuLinks.scrollTop = 0;
-    } else {
-      menuLinks.style.display = 'flex';
-      menuLinks.dataset.visible = 'false';
-      hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('menu-open');
-    }
   });
   
   // Activar animaciones de entrada del menu bar y bottom bar
