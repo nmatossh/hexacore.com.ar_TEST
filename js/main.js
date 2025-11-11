@@ -171,12 +171,10 @@ function setupMenu() {
           const target = document.querySelector(href);
           if (target) {
             event.preventDefault();
-            closeMobileMenu();
-            setTimeout(() => {
-              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              history.replaceState(null, '', href);
-            }, 240);
-            return;
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', href);
+          } else {
+            window.location.hash = href;
           }
         }
 
