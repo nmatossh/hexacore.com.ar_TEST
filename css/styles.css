@@ -85,7 +85,7 @@ body::-webkit-scrollbar {
   }
   to {
     transform: translateY(0);
-  }
+}
 }
 
 @keyframes bottomBarSlideUp {
@@ -264,7 +264,7 @@ nav#menu .menu-links .theme-toggle {
   touch-action: manipulation;
   min-height: 44px;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
-}
+  }
 
 nav#menu .menu-links .theme-toggle:hover {
   background: #982b2b;
@@ -858,8 +858,8 @@ body.page-loaded .bottom-bar {
 
 .service-card p {
   line-height: 1.6;
-}
-
+  }
+  
 .service-card:hover {
   transform: translateY(-8px) rotate(1deg);
   box-shadow: 0 8px 25px rgba(152, 43, 43, 0.3);
@@ -867,7 +867,7 @@ body.page-loaded .bottom-bar {
 
 .service-card:hover .service-icon i {
   transform: scale(1.1) rotate(5deg);
-}
+  }
 
 .service-card .service-toggle {
   align-self: center;
@@ -1098,7 +1098,7 @@ body.page-loaded .bottom-bar {
     transition: transform 0.3s ease;
     padding: 0.5rem;
     margin-left: 0.75rem;
-  }
+}
 
   .hamburger.active {
     transform: rotate(90deg);
@@ -1109,21 +1109,21 @@ body.page-loaded .bottom-bar {
     flex-direction: column;
     position: fixed;
     top: calc(var(--nav-h, var(--nav-height)) + 0.5rem);
-    right: 0.75rem;
-    left: auto;
-    transform: translate3d(0, -15px, 0);
-    width: min(90vw, 20rem);
-    max-width: 22rem;
+    left: 50%;
+    right: auto;
+    transform: translate3d(-50%, -15px, 0);
+    width: min(90vw, 18rem);
+    max-width: 20rem;
     max-height: calc(100vh - var(--nav-h, var(--nav-height)) - 1.5rem);
-    background-color: rgba(47, 47, 47, 0.94);
+    background-color: #323232;
     padding: 0.5rem 0;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     gap: 0;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: none;
     z-index: 9999;
     opacity: 0;
     transition: transform 0.3s ease, opacity 0.25s ease;
-    backdrop-filter: blur(24px);
+    backdrop-filter: blur(18px);
     overflow-y: auto;
     overflow-x: hidden;
     align-items: stretch;
@@ -1133,41 +1133,48 @@ body.page-loaded .bottom-bar {
   nav#menu .menu-links[data-visible="true"] {
     display: flex;
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(-50%, 0, 0);
   }
 
   nav#menu .menu-links .menu-link {
     width: 100%;
     text-align: center;
-    padding: 0.875rem 1.75rem;
-    font-size: 1.3rem;
+    justify-content: center;
+    padding: 0.6rem 1.25rem;
+    font-size: 1rem;
     font-weight: 500;
-    border-radius: 0 !important;
-    border-bottom: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    transition: transform 0.25s ease, background-color 0.25s ease;
-  }
+    border-radius: 0;
+    border: none;
+    background: transparent;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
 
   nav#menu .menu-links > .menu-link:first-of-type {
     border-top: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
   }
 
   nav#menu .menu-links > .menu-link:last-of-type {
     border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
   nav#menu .menu-links > .menu-link.contact-link {
     margin-right: 0;
-  }
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
 
   nav#menu .menu-links .menu-link:hover {
-    background-color: rgba(152, 43, 43, 0.3);
-    transform: translateY(-2px);
+    background-color: #982b2b;
   }
 
   nav#menu .menu-links .submenu-direct-link {
-    display: flex;
-    padding: 0.875rem 1.75rem;
+  display: flex;
+    padding: 0.6rem 1.25rem;
   }
 
   nav#menu .menu-links .submenu-trigger {
@@ -1180,7 +1187,7 @@ body.page-loaded .bottom-bar {
 
   nav#menu .menu-links .has-submenu .submenu {
     display: none !important;
-  }
+}
 
   nav#menu .menu-links .theme-toggle {
     display: none;
@@ -1200,7 +1207,7 @@ body.page-loaded .bottom-bar {
   nav#menu .menu-links .theme-toggle {
     font-size: 1.2rem;
     padding: 1rem 0;
-  }
+}
 }
 
 @media (max-width: 900px){
@@ -1208,8 +1215,8 @@ body.page-loaded .bottom-bar {
   .section-title {
     font-size: 1.75rem;
     margin-bottom: 1.25rem;
-  }
-  
+}
+
   .home-content-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
   .home-logo { max-width: 280px; }
   .team-grid { grid-template-columns: 1fr; gap: 1.25rem; }
