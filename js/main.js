@@ -163,7 +163,23 @@ function setupMenu() {
 
     const mobileMenuLinks = mobileMenu.querySelectorAll('a');
     mobileMenuLinks.forEach((link) => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (event) => {
+        const href = link.getAttribute('href');
+        const isHashLink = href && href.startsWith('#');
+
+        if (isHashLink) {
+          const target = document.querySelector(href);
+          if (target) {
+            event.preventDefault();
+            closeMobileMenu();
+            setTimeout(() => {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              history.replaceState(null, '', href);
+            }, 240);
+            return;
+          }
+        }
+
         closeMobileMenu();
       });
     });
