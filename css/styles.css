@@ -175,12 +175,13 @@ nav#menu .menu-links .menu-link:focus-visible {
   background: #982b2b;
 }
 nav#menu .menu-links > .menu-link:first-of-type {
-  border-top-left-radius: 1.875rem;
-  border-bottom-left-radius: 1.875rem;
+  border-top-left-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
 }
-nav#menu .menu-links > .menu-link:last-of-type {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+nav#menu .menu-links > .menu-link.contact-link {
+  border-top-right-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+  margin-right: 0;
 }
 
 nav#menu .menu-links .submenu-direct-link {
@@ -242,8 +243,10 @@ nav#menu .menu-links .has-submenu[data-open="true"] .submenu-trigger i {
 nav#menu .menu-links .theme-toggle {
   background: #323232;
   border: none;
-  border-top-right-radius: 1.875rem;
-  border-bottom-right-radius: 1.875rem;
+  border-top-right-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+  border-top-left-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
   color: #E7E7E7;
   text-decoration: none;
   padding: 0.75rem 1.25rem;
@@ -253,13 +256,14 @@ nav#menu .menu-links .theme-toggle {
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  margin: 0;
+  margin: 0 0 0 1.875rem;
   line-height: 1;
   min-width: 3.375rem;
   width: 3.375rem;
   box-sizing: border-box;
   touch-action: manipulation;
   min-height: 44px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 nav#menu .menu-links .theme-toggle:hover {
@@ -280,12 +284,6 @@ nav#menu .menu-links .theme-toggle i {
 
 nav#menu .menu-links .theme-toggle:hover i {
   transform: rotate(20deg);
-}
-
-/* Ajustar el último enlace cuando el botón está después */
-nav#menu .menu-links > .menu-link:last-of-type {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
 }
 
 /* ===== Secciones ===== */
@@ -1156,6 +1154,10 @@ body.page-loaded .bottom-bar {
 
   nav#menu .menu-links > .menu-link:last-of-type {
     border-bottom: none;
+  }
+
+  nav#menu .menu-links > .menu-link.contact-link {
+    margin-right: 0;
   }
 
   nav#menu .menu-links .menu-link:hover {
