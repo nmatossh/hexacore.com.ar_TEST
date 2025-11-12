@@ -25,6 +25,7 @@ function applyChromeHeights() {
   root.style.setProperty('--bottom-height', bottomH + 'px');
 }
 
+/* MENU BURGUER HIDE
 // Menú hamburguesa
 function setupMenu() {
   const hamburger = document.getElementById('hamburger');
@@ -178,6 +179,7 @@ function setupMenu() {
     }
   });
 }
+MENU BURGUER HIDE */
 
 /* ===== Animaciones de Scroll ===== */
 function setupScrollAnimations() {
@@ -581,7 +583,7 @@ function updateCopyrightYear() {
 
 window.addEventListener('DOMContentLoaded', () => {
   applyChromeHeights();
-  setupMenu();
+  // MENU BURGUER HIDE setupMenu(); MENU BURGUER HIDE
   setupScrollAnimations();
   setupMenuTransparency();
   setupServiceToggles();
@@ -590,6 +592,7 @@ window.addEventListener('DOMContentLoaded', () => {
   updateCopyrightYear();
   // Recalcular en resize por si el alto cambia (responsive)
   window.addEventListener('resize', applyChromeHeights);
+/* MENU BURGUER HIDE
   window.addEventListener('orientationchange', () => {
     setTimeout(() => {
       applyChromeHeights();
@@ -626,6 +629,7 @@ window.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('menu-open');
     }
   });
+MENU BURGUER HIDE */
   
   // Activar animaciones de entrada del menu bar y bottom bar
   // Pequeño delay para que se vea el efecto

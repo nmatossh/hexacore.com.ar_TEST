@@ -144,12 +144,14 @@ nav#menu .menu-logo a {
   width: auto;
   display: block;
 }
+/* MENU BURGUER HIDE
 .hamburger { display: none; background: transparent; border: none; font-size: 1.8rem; color: #E7E7E7; cursor: pointer; touch-action: manipulation; min-height: 44px; min-width: 44px; }
 .hamburger:focus-visible {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
   border-radius: 0.25rem;
 }
+MENU BURGUER HIDE */
 
 nav#menu .menu-links { display: flex; gap: 0; align-items: stretch; }
 nav#menu .menu-links .menu-link {
@@ -175,12 +177,13 @@ nav#menu .menu-links .menu-link:focus-visible {
   background: #982b2b;
 }
 nav#menu .menu-links > .menu-link:first-of-type {
-  border-top-left-radius: 1.875rem;
-  border-bottom-left-radius: 1.875rem;
+  border-top-left-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
 }
-nav#menu .menu-links > .menu-link:last-of-type {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+nav#menu .menu-links > .menu-link.contact-link {
+  border-top-right-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+  margin-right: 0;
 }
 
 nav#menu .menu-links .submenu-direct-link {
@@ -242,8 +245,10 @@ nav#menu .menu-links .has-submenu[data-open="true"] .submenu-trigger i {
 nav#menu .menu-links .theme-toggle {
   background: #323232;
   border: none;
-  border-top-right-radius: 1.875rem;
-  border-bottom-right-radius: 1.875rem;
+  border-top-right-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+  border-top-left-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
   color: #E7E7E7;
   text-decoration: none;
   padding: 0.75rem 1.25rem;
@@ -253,13 +258,14 @@ nav#menu .menu-links .theme-toggle {
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  margin: 0;
+  margin: 0 0 0 1.875rem;
   line-height: 1;
   min-width: 3.375rem;
   width: 3.375rem;
   box-sizing: border-box;
   touch-action: manipulation;
   min-height: 44px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 nav#menu .menu-links .theme-toggle:hover {
@@ -280,12 +286,6 @@ nav#menu .menu-links .theme-toggle i {
 
 nav#menu .menu-links .theme-toggle:hover i {
   transform: rotate(20deg);
-}
-
-/* Ajustar el último enlace cuando el botón está después */
-nav#menu .menu-links > .menu-link:last-of-type {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
 }
 
 /* ===== Secciones ===== */
@@ -1093,6 +1093,7 @@ body.page-loaded .bottom-bar {
     gap: 0.75rem;
   }
 
+/* MENU BURGUER HIDE
   .hamburger {
     display: block;
     z-index: 10000;
@@ -1105,7 +1106,9 @@ body.page-loaded .bottom-bar {
   .hamburger.active {
     transform: rotate(90deg);
   }
+MENU BURGUER HIDE */
 
+/* MENU BURGUER HIDE
   nav#menu .menu-links {
     display: none;
     flex-direction: column;
@@ -1158,6 +1161,10 @@ body.page-loaded .bottom-bar {
     border-bottom: none;
   }
 
+  nav#menu .menu-links > .menu-link.contact-link {
+    margin-right: 0;
+  }
+
   nav#menu .menu-links .menu-link:hover {
     background-color: rgba(152, 43, 43, 0.3);
     transform: translateY(-2px);
@@ -1183,6 +1190,7 @@ body.page-loaded .bottom-bar {
   nav#menu .menu-links .theme-toggle {
     display: none;
   }
+MENU BURGUER HIDE */
 
   html, body {
     background-attachment: scroll;
@@ -1190,6 +1198,7 @@ body.page-loaded .bottom-bar {
 }
 
 @media (max-width: 900px) and (orientation: landscape){
+/* MENU BURGUER HIDE
   nav#menu .menu-links {
     padding: calc(var(--nav-h, var(--nav-height)) + 1rem) 0 1.5rem;
   }
@@ -1199,6 +1208,7 @@ body.page-loaded .bottom-bar {
     font-size: 1.2rem;
     padding: 1rem 0;
   }
+MENU BURGUER HIDE */
 }
 
 @media (max-width: 900px){
