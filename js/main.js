@@ -74,12 +74,14 @@ function setupMenu() {
         closeSubmenus();
         parent.dataset.open = 'false';
         trigger.setAttribute('aria-expanded', 'false');
-        const target = document.querySelector(targetSelector);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-          window.location.hash = targetSelector;
+        scrollToSection(targetSelector);
+        // Actualizar la URL sin hash y sin index.html
+        let path = window.location.pathname;
+        if (path.endsWith('index.html')) {
+          path = path.replace(/index\.html$/, '') || '/';
         }
+        const cleanUrl = path + window.location.search;
+        history.pushState(null, '', cleanUrl);
         return;
       }
 
@@ -579,8 +581,109 @@ function updateCopyrightYear() {
   }
 }
 
+/* ===== Navegación sin hash en URL ===== */
+// Función global para hacer scroll suave a una sección
+function scrollToSection(sectionId) {
+  const section = document.querySelector(sectionId);
+  if (!section) return;
+  
+  const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 100;
+  const sectionTop = section.offsetTop - navHeight;
+  
+  window.scrollTo({
+    top: sectionTop,
+    behavior: 'smooth'
+  });
+}
+
+function setupHashlessNavigation() {
+
+  // Interceptar todos los clicks en enlaces con hash
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    
+    const href = link.getAttribute('href');
+    // Ignorar enlaces vacíos o solo con #
+    if (!href || href === '#') return;
+    
+    // Prevenir el comportamiento por defecto
+    e.preventDefault();
+    
+    // Hacer scroll a la sección
+    scrollToSection(href);
+    
+    // Actualizar la URL sin hash y sin index.html usando History API
+    let path = window.location.pathname;
+    if (path.endsWith('index.html')) {
+      path = path.replace(/index\.html$/, '') || '/';
+    }
+    const cleanUrl = path + window.location.search;
+    history.pushState(null, '', cleanUrl);
+    
+    // Si hay un menú hamburguesa abierto, cerrarlo
+    const menuLinks = document.querySelector('#menu .menu-links');
+    const hamburger = document.getElementById('hamburger');
+    if (menuLinks && menuLinks.dataset.visible === 'true') {
+      menuLinks.dataset.visible = 'false';
+      if (hamburger) {
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+      document.body.classList.remove('menu-open');
+      setTimeout(() => {
+        if (window.innerWidth <= MOBILE_BREAKPOINT) {
+          menuLinks.style.display = 'none';
+        }
+      }, 300);
+    }
+  });
+
+  // Manejar el botón "atrás" del navegador
+  window.addEventListener('popstate', (e) => {
+    // Si hay un hash en la URL al hacer back, hacer scroll a esa sección
+    if (window.location.hash) {
+      scrollToSection(window.location.hash);
+    } else {
+      // Si no hay hash, scroll al top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+
+  // Limpiar hash y index.html de la URL al cargar la página
+  function cleanUrl() {
+    let path = window.location.pathname;
+    // Remover index.html si está presente
+    if (path.endsWith('index.html')) {
+      path = path.replace(/index\.html$/, '') || '/';
+    }
+    // Remover hash si existe
+    const cleanUrl = path + window.location.search;
+    if (window.location.hash || window.location.pathname.includes('index.html')) {
+      history.replaceState(null, '', cleanUrl);
+    }
+  }
+
+  // Si hay hash en la URL al cargar, hacer scroll y luego limpiar
+  if (window.location.hash) {
+    const hash = window.location.hash;
+    // Hacer scroll a la sección
+    setTimeout(() => {
+      scrollToSection(hash);
+    }, 100);
+    // Limpiar el hash de la URL después de un breve delay
+    setTimeout(() => {
+      cleanUrl();
+    }, 500);
+  } else {
+    // Si no hay hash, limpiar index.html si existe
+    cleanUrl();
+  }
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   applyChromeHeights();
+  setupHashlessNavigation();
   setupMenu();
   setupScrollAnimations();
   setupMenuTransparency();
@@ -632,7 +735,5 @@ window.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     document.body.classList.add('page-loaded');
   }, 50);
-    });
-
-
+});
 
