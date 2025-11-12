@@ -25,16 +25,15 @@ function applyChromeHeights() {
   root.style.setProperty('--bottom-height', bottomH + 'px');
 }
 
-/* MENU BURGUER HIDE
 // Menú hamburguesa
 function setupMenu() {
-  const menuLinks = document.querySelector('#menu .menu-links');
   const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  if (!menuLinks) {
+  const menuLinks = document.querySelector('#menu .menu-links');
+  if (!hamburger || !menuLinks) {
     return;
   }
+
+  menuLinks.dataset.visible = 'false';
   const submenuTriggers = menuLinks.querySelectorAll('.submenu-trigger');
 
   function closeSubmenus() {
@@ -51,6 +50,7 @@ function setupMenu() {
   submenuDirectLinks.forEach((directLink) => {
     directLink.addEventListener('click', () => {
       closeSubmenus();
+      closeMenu();
     });
   });
 
@@ -101,89 +101,83 @@ function setupMenu() {
     }
   });
 
-  // Cerrar submenús al hacer clic en un enlace
-  const allMenuLinks = menuLinks.querySelectorAll('a');
-  allMenuLinks.forEach((link) => {
-    link.addEventListener('click', () => {
+  hamburger.addEventListener('click', (e) => {
+    e.preventDefault();
+    const visible = menuLinks.dataset.visible === 'true';
+    
+    if (visible) {
+      // Cerrar menú
+      closeMenu();
+    } else {
+      // Abrir menú
+      menuLinks.style.display = 'flex';
+      document.body.classList.add('menu-open');
+      menuLinks.scrollTop = 0;
       closeSubmenus();
-    });
+      // Pequeño delay para que el display se aplique antes de la animación
+      setTimeout(() => {
+        menuLinks.dataset.visible = 'true';
+        hamburger.classList.add('active');
+      }, 10);
+    }
+    
+    // Mejorar accesibilidad
+    hamburger.setAttribute('aria-expanded', !visible);
   });
 
-  if (hamburger && mobileMenu) {
-    let mobileMenuCloseTimeout = null;
+  // Cerrar menú al hacer clic en un enlace (solo en móvil)
+  menuLinks.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      closeSubmenus();
+    }
 
-    const openMobileMenu = () => {
-      if (mobileMenuCloseTimeout) {
-        clearTimeout(mobileMenuCloseTimeout);
-        mobileMenuCloseTimeout = null;
+    if (e.target.tagName === 'A' && window.innerWidth <= MOBILE_BREAKPOINT) {
+      closeMenu();
+    }
+  });
+
+  // Función para cerrar el menú completamente
+  function closeMenu() {
+    menuLinks.dataset.visible = 'false';
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+    closeSubmenus();
+    // Esperar a que termine la animación antes de ocultar
+    setTimeout(() => {
+      if (window.innerWidth <= MOBILE_BREAKPOINT) {
+        menuLinks.style.display = 'none';
       }
-      mobileMenu.hidden = false;
-      requestAnimationFrame(() => {
-        mobileMenu.classList.add('open');
-      });
-      hamburger.setAttribute('aria-expanded', 'true');
-    };
-
-    const closeMobileMenu = () => {
-      if (mobileMenuCloseTimeout) {
-        clearTimeout(mobileMenuCloseTimeout);
-      }
-      mobileMenu.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      mobileMenuCloseTimeout = setTimeout(() => {
-        mobileMenu.hidden = true;
-        mobileMenuCloseTimeout = null;
-      }, 220);
-    };
-
-    const toggleMobileMenu = () => {
-      const isOpen = mobileMenu.classList.contains('open');
-      if (isOpen) {
-        closeMobileMenu();
-      } else {
-        openMobileMenu();
-      }
-    };
-
-    const handleDocumentClick = (event) => {
-      if (!mobileMenu.classList.contains('open')) {
-        return;
-      }
-      if (hamburger.contains(event.target) || mobileMenu.contains(event.target)) {
-        return;
-      }
-      closeMobileMenu();
-    };
-
-    hamburger.addEventListener('click', (event) => {
-      event.preventDefault();
-      toggleMobileMenu();
-    });
-
-    document.addEventListener('click', handleDocumentClick);
-
-    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-    mobileMenuLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        closeMobileMenu();
-      });
-    });
-
-    const handleResizeForMobileMenu = () => {
-      if (window.innerWidth > MOBILE_BREAKPOINT) {
-        closeMobileMenu();
-      }
-    };
-
-    window.addEventListener('resize', handleResizeForMobileMenu);
-    window.addEventListener('orientationchange', handleResizeForMobileMenu);
+    }, 300);
   }
 
   window.addEventListener('resize', () => {
+    const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+    
     closeSubmenus();
+
+    if (!isMobile) {
+      // Modo desktop: mostrar menú normal y cerrar cualquier estado de móvil
+      menuLinks.style.display = 'flex';
+      menuLinks.dataset.visible = 'false';
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+    } else {
+      // Modo móvil: cerrar el menú si está abierto
+      if (menuLinks.dataset.visible === 'true') {
+        closeMenu();
+      } else {
+        // Si ya está cerrado, solo asegurar que esté oculto
+        menuLinks.style.display = 'none';
+        menuLinks.dataset.visible = 'false';
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+      }
+    }
   });
 }
-MENU BURGUER HIDE */
 
 /* ===== Animaciones de Scroll ===== */
 function setupScrollAnimations() {
@@ -587,7 +581,7 @@ function updateCopyrightYear() {
 
 window.addEventListener('DOMContentLoaded', () => {
   applyChromeHeights();
-  // MENU BURGUER HIDE setupMenu(); MENU BURGUER HIDE
+  setupMenu();
   setupScrollAnimations();
   setupMenuTransparency();
   setupServiceToggles();
@@ -596,13 +590,42 @@ window.addEventListener('DOMContentLoaded', () => {
   updateCopyrightYear();
   // Recalcular en resize por si el alto cambia (responsive)
   window.addEventListener('resize', applyChromeHeights);
-/* MENU BURGUER HIDE
   window.addEventListener('orientationchange', () => {
     setTimeout(() => {
       applyChromeHeights();
     }, 250);
+
+    const hamburger = document.getElementById('hamburger');
+    const menuLinks = document.querySelector('#menu .menu-links');
+
+    if (!hamburger || !menuLinks) {
+      return;
+    }
+
+    const submenuTriggers = menuLinks.querySelectorAll('.submenu-trigger');
+    submenuTriggers.forEach((trigger) => {
+      const parent = trigger.closest('.has-submenu');
+      trigger.setAttribute('aria-expanded', 'false');
+      if (parent) {
+        parent.dataset.open = 'false';
+      }
+    });
+
+    if (window.innerWidth <= MOBILE_BREAKPOINT) {
+      menuLinks.style.display = 'none';
+      menuLinks.dataset.visible = 'false';
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      menuLinks.scrollTop = 0;
+    } else {
+      menuLinks.style.display = 'flex';
+      menuLinks.dataset.visible = 'false';
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+    }
   });
-MENU BURGUER HIDE */
   
   // Activar animaciones de entrada del menu bar y bottom bar
   // Pequeño delay para que se vea el efecto
