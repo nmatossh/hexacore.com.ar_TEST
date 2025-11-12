@@ -77,6 +77,8 @@ function setupMenu() {
         const target = document.querySelector(targetSelector);
         if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Actualizar el hash en la URL después de hacer scroll
+          window.location.hash = targetSelector;
         } else {
           window.location.hash = targetSelector;
         }

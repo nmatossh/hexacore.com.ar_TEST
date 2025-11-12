@@ -297,8 +297,8 @@ html { scroll-padding-top: var(--nav-h, var(--nav-height)); }
 
 /* Espaciador: +20px para evitar que Contacto quede tapado */
 .scroll-spacer { height: 0; min-height: 1px; }
-#section1.featured-section { margin-top: 0; padding-top: 1.875rem; }
-#section6.featured-section { margin-bottom: 0; padding-bottom: 1.875rem; }
+#inicio.featured-section { margin-top: 0; padding-top: 1.875rem; }
+#contacto.featured-section { margin-bottom: 0; padding-bottom: 1.875rem; }
 
 /* ===== Contact Section ===== */
 .contact-container {
@@ -598,15 +598,15 @@ html { scroll-padding-top: var(--nav-h, var(--nav-height)); }
 }
 .featured-section .section-title { text-align: center; display: block; width: 100%; }
 .featured-section .section-content { text-align: left; display: block; width: 100%; max-width: none; }
-#section1.featured-section { border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; margin-top: 1.875rem; scroll-margin-top: calc(var(--nav-h, var(--nav-height)) + 1.875rem); }
-#section2.featured-section,
-#section3.featured-section,
+#inicio.featured-section { border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; margin-top: 1.875rem; scroll-margin-top: calc(var(--nav-h, var(--nav-height)) + 1.875rem); }
+#nosotros.featured-section,
+#servicios.featured-section,
 #section4.featured-section,
-#section5.featured-section,
-#section6.featured-section {
+#clientes.featured-section,
+#contacto.featured-section {
   scroll-margin-top: calc(var(--nav-h, var(--nav-height)) + 1.875rem);
 }
-#section6.featured-section { 
+#contacto.featured-section { 
   border-bottom-left-radius: 0.75rem; 
   border-bottom-right-radius: 0.75rem; 
   margin-bottom: 0;
@@ -691,7 +691,7 @@ body.page-loaded .bottom-bar {
   align-items: center;
 }
 
-#section1 .home-content-grid {
+#inicio .home-content-grid {
   margin-top: 1.5rem;
 }
 
@@ -724,6 +724,11 @@ body.page-loaded .bottom-bar {
   box-sizing: border-box;
   transition: background-color 0.3s ease;
   contain: layout style paint;
+}
+
+.home-text-section h2 {
+  margin-bottom: 0.6rem;
+  color: var(--text-primary);
 }
 
 .home-text-section h3 {
@@ -850,7 +855,7 @@ body.page-loaded .bottom-bar {
 
 .service-card h3 {
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.2rem;
   color: var(--text-primary);
   font-weight: 600;
   letter-spacing: -0.01em;
