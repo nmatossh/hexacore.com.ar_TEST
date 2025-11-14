@@ -21,7 +21,7 @@
   --border-color: #555;
   --accent-color: #982b2b;
   --accent-hover: #7a2222;
-  --overlay: rgba(32, 32, 32, 0.5);
+  --overlay: rgba(12, 12, 12, 0.5);
 }
 
 html {
@@ -51,6 +51,12 @@ html::-webkit-scrollbar {
   --overlay: rgba(32, 32, 32, 0.7);
 }
 
+/* Cambiar imagen de fondo en tema claro */
+[data-theme="light"] html,
+[data-theme="light"] body {
+  background-image: linear-gradient(var(--overlay), var(--overlay)), url('../img/light_wall.jpg');
+}
+
 html, body {
   height: 100%;
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -58,7 +64,7 @@ html, body {
   line-height: 1.6;
   color: var(--text-primary);
   background-color: var(--bg-primary);
-  background-image: linear-gradient(var(--overlay), var(--overlay)), url('../img/wall.jpg');
+  background-image: linear-gradient(var(--overlay), var(--overlay)), url('../img/dark_wall.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
