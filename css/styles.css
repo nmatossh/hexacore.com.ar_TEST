@@ -85,7 +85,7 @@ nav#menu {
   position: fixed; top: 0; left: 0;
   width: 100%;
   background-color: #1d1d1d;
-  height: 100px; display: flex; align-items: center; padding: 0;
+  height: 80px; display: flex; align-items: center; padding: 0;
   z-index: 1000;
   /* Estado inicial: fuera de la pantalla arriba */
   transform: translateY(-100%);
@@ -94,7 +94,7 @@ nav#menu {
 
 /* Transparencia del menu bar cuando se hace scroll o se hace click en enlaces */
 nav#menu.transparent {
-  background-color: rgba(29, 29, 29, 0.9);
+  background-color: rgba(29, 29, 29, 0.660);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -589,7 +589,7 @@ html { scroll-padding-top: var(--nav-h, var(--nav-height)); }
 
 /* Transparencia de la bottom bar cuando se hace scroll o se hace click en iconos */
 .bottom-bar.transparent {
-  background-color: rgba(29, 29, 29, 0.9);
+  background-color: rgba(29, 29, 29, 0.600);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
