@@ -42,7 +42,7 @@ html, body {
   line-height: 1.6;
   color: var(--text-primary);
   background-color: var(--bg-primary);
-  background-image: linear-gradient(var(--overlay), var(--overlay)), url('../img/wall10.jpg');
+  background-image: linear-gradient(var(--overlay), var(--overlay)), url('../img/wall.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -153,9 +153,10 @@ nav#menu .menu-links > .menu-link:first-of-type {
   border-top-left-radius: 0.75rem;
   border-bottom-left-radius: 0.75rem;
 }
-nav#menu .menu-links > a.menu-link[href="#clientes"] {
+nav#menu .menu-links > .menu-link.contact-link {
   border-top-right-radius: 0.75rem;
   border-bottom-right-radius: 0.75rem;
+  margin-right: 0;
 }
 
 nav#menu .menu-links .submenu-direct-link {
@@ -213,9 +214,9 @@ nav#menu .menu-links .has-submenu[data-open="true"] .submenu-trigger i {
   transform: rotate(180deg);
 }
 
-/* Botón de Contactanos (separado del menú) */
+/* Botón de WhatsApp (dentro del menú) */
 nav#menu .menu-links .whatsapp-button {
-  background: #982b2b;
+  background: #323232;
   border: none;
   border-top-right-radius: 0.75rem;
   border-bottom-right-radius: 0.75rem;
@@ -224,16 +225,16 @@ nav#menu .menu-links .whatsapp-button {
   color: #E7E7E7;
   text-decoration: none;
   padding: 0.75rem 1.25rem;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.3s;
   cursor: pointer;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: inherit;
+  font-size: 1.2rem;
   margin: 0 0 0 1.875rem;
   line-height: 1;
-  min-width: auto;
-  width: auto;
+  min-width: 3.375rem;
+  width: 3.375rem;
   box-sizing: border-box;
   touch-action: manipulation;
   min-height: 44px;
@@ -241,14 +242,23 @@ nav#menu .menu-links .whatsapp-button {
 }
 
 nav#menu .menu-links .whatsapp-button:hover {
-  background: #E7E7E7;
-  color: #323232;
+  background: #25D366;
 }
 nav#menu .menu-links .whatsapp-button:focus-visible {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
-  background: #E7E7E7;
-  color: #323232;
+  background: #25D366;
+}
+
+nav#menu .menu-links .whatsapp-button i {
+  transition: transform 0.3s ease;
+  display: inline-block;
+  width: 1em;
+  text-align: center;
+}
+
+nav#menu .menu-links .whatsapp-button:hover i {
+  transform: scale(1.1);
 }
 
 /* ===== Secciones ===== */
@@ -262,7 +272,7 @@ html { scroll-padding-top: var(--nav-h, var(--nav-height)); }
 
 /* Espaciador: +20px para evitar que Contacto quede tapado */
 .scroll-spacer { height: 0; min-height: 1px; }
-#inicio.featured-section { margin-top: 0; padding-top: 1.875rem; padding-bottom: 0.625rem; }
+#inicio.featured-section { margin-top: 0; padding-top: 1.875rem; }
 #contacto.featured-section { margin-bottom: 0; padding-bottom: 1.875rem; }
 
 /* ===== Contact Section ===== */
@@ -272,9 +282,8 @@ html { scroll-padding-top: var(--nav-h, var(--nav-height)); }
   gap: 3rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 0;
   margin-top: 0;
-  margin-bottom: 1.25rem;
 }
 
 .contact-form-section {
@@ -647,12 +656,10 @@ body.page-loaded .bottom-bar {
   margin: 0 auto;
   padding: 0 1.25rem;
   align-items: center;
-  margin-bottom: 1.25rem;
 }
 
 #inicio .home-content-grid {
   margin-top: 1.5rem;
-  margin-bottom: 1.25rem;
 }
 
 .home-logo-section {
@@ -680,6 +687,7 @@ body.page-loaded .bottom-bar {
   border-radius: 0.75rem;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   min-height: fit-content;
+  margin-bottom: 1.875rem;
   box-sizing: border-box;
   transition: background-color 0.3s ease;
   contain: layout style paint;
@@ -703,8 +711,6 @@ body.page-loaded .bottom-bar {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.25rem;
-  margin-bottom: 1.25rem;
 }
 
 .team-member {
@@ -787,8 +793,7 @@ body.page-loaded .bottom-bar {
   gap: 1.875rem;
   max-width: 100%;
   margin: 0;
-  padding: 0 1.25rem;
-  margin-bottom: 1.25rem;
+  padding: 0;
 }
 
 .service-card {
@@ -971,8 +976,7 @@ body.page-loaded .bottom-bar {
 /* ===== Clients Section ===== */
 .clients-section {
   margin-top: 0;
-  padding: 0 1.25rem;
-  margin-bottom: 1.25rem;
+  padding: 0;
 }
 
 .clients-subtitle {
@@ -1128,29 +1132,6 @@ body.page-loaded .bottom-bar {
     transform: translateY(0px);
   }
 
-  nav#menu .menu-links .whatsapp-button {
-    background: transparent;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 0 !important;
-    width: 100%;
-    text-align: center;
-    padding: 0.875rem 1.75rem;
-    font-size: 1.3rem;
-    font-weight: 500;
-    margin: 0;
-    box-shadow: none;
-  }
-
-  nav#menu .menu-links > .whatsapp-button:last-of-type {
-    border-bottom: none;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-  }
-
-  nav#menu .menu-links .whatsapp-button:hover {
-    background-color: rgba(217, 31, 31, 0.713);
-  }
-
   nav#menu .menu-links .submenu-direct-link {
     display: flex;
     padding: 0.875rem 1.75rem;
@@ -1166,6 +1147,10 @@ body.page-loaded .bottom-bar {
 
   nav#menu .menu-links .has-submenu .submenu {
     display: none !important;
+  }
+
+  nav#menu .menu-links .whatsapp-button {
+    display: none;
   }
 
   html, body {
@@ -1202,16 +1187,16 @@ body.page-loaded .bottom-bar {
   .member-bio { text-align: center; }
   .team-section { padding: 0; }
   .header-logo { height: 48px; } /* Logo Burguer Menu */
-  .services-grid { grid-template-columns: 1fr; gap: 1.25rem; padding: 0 1.25rem; }
+  .services-grid { grid-template-columns: 1fr; gap: 1.25rem; padding: 0; }
   /* .projects-container { grid-template-columns: 1fr; gap: 1.25rem; padding: 0; } */
-  .clients-section { padding: 0 1.25rem; }
+  .clients-section { padding: 0; }
   .clients-content { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.25rem; }
   .clients-single-card { padding: 1.5rem; }
   .client-item { padding: 1rem; }
   .client-item i { font-size: 2rem; }
   .client-item .client-logo { width: 3rem; height: 3rem; }
   .client-item span { font-size: 0.8rem; }
-  .contact-container { grid-template-columns: 1fr; gap: 2rem; padding: 0 1.25rem; }
+  .contact-container { grid-template-columns: 1fr; gap: 2rem; padding: 0; }
   .contact-form-section,
   .contact-details,
   .map-container { padding: 1.5rem; }
@@ -1288,59 +1273,6 @@ body.page-loaded .bottom-bar {
   .project-card,
   .team-member {
     padding: 1.5rem;
-  }
-}
-
-/* ===== Botón flotante de WhatsApp ===== */
-.whatsapp-float {
-  position: fixed;
-  bottom: 5rem;
-  right: 2rem;
-  width: 3.75rem;
-  height: 3.75rem;
-  background-color: #25D366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-  z-index: 1001;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 1.75rem;
-  animation: pulse 2s infinite;
-}
-
-.whatsapp-float:hover {
-  background-color: #128c7e;
-}
-
-.whatsapp-float:focus-visible {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 3px;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 8px rgba(37, 211, 102, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-  }
-}
-
-@media (max-width: 900px) {
-  .whatsapp-float {
-    width: 3.25rem;
-    height: 3.25rem;
-    bottom: calc(var(--bottom-h, var(--bottom-height)) + 1rem);
-    right: 1.5rem;
-    font-size: 1.5rem;
-    z-index: 1001;
   }
 }
 

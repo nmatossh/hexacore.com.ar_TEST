@@ -33,7 +33,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
-  <meta name="color-scheme" content="dark light">
 </head>
 <body>
   <header>
@@ -64,10 +63,7 @@
           </div>
           <!-- <a href="#section4" class="menu-link">Proyectos</a> -->
           <a href="#clientes" class="menu-link">Clientes</a>
-          <a href="#contacto" class="menu-link contact-link">Contacto</a>
-          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">
-            <i class="fas fa-sun" id="theme-icon"></i>
-          </button>
+          <a href="#contacto" id="whatsapp-button" class="whatsapp-button" aria-label="Contactanos" title="Contactanos">Contactanos</a>
         </div>
       </div>
     </nav>
@@ -75,13 +71,12 @@
 
   <main id="main-content">
     <section id="inicio" class="featured-section">
+      <h2 class="section-title">Bienvenidos a Hexacore</h2>
       <div class="home-content-grid">
         <div class="home-logo-section slide-in-left">
           <img src="./img/logo.svg" alt="Hexacore" class="home-logo" onerror="handleImageError(this)">
         </div>
         <div class="home-text-section slide-in-right">
-          <h2>Bienvenidos a Hexacore</h2>
-          
           <p>Con más de una década de experiencia en el sector, nos hemos consolidado como el socio tecnológico de confianza para organizaciones que buscan optimizar sus procesos y modernizar su infraestructura.</p>
           
           <p>Nuestro equipo de profesionales altamente capacitados se especializa en infraestructura de TI, seguridad informática, migración a la nube y soporte técnico especializado.</p>
@@ -101,55 +96,63 @@
         <h2 class="section-title">Nuestro Equipo</h2>
         <div class="team-grid">
           <div class="team-member slide-in-left">
-            <div class="member-photo">
-              <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Nicolás">
-                <img src="./img/team/opm.png" alt="Nicolás" class="member-image" onerror="handleImageError(this)">
-              </a>
+            <div class="member-header">
+              <div class="member-photo">
+                <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Nicolás">
+                  <img src="./img/team/opm.png" alt="Nicolás" class="member-image" onerror="handleImageError(this)">
+                </a>
+              </div>
+              <div class="member-name-role">
+                <h4>Nicolás</h4>
+                <p class="member-role">Técnico Especialista</p>
+              </div>
             </div>
-            <div class="member-info">
-              <h4>Nicolás</h4>
-              <p class="member-role">Técnico Especialista</p>
-              <p class="member-bio">Técnico especializado en infraestructura y sistemas con más de 10 años de experiencia en el sector. Nicolás es el encargado de diseñar e implementar las soluciones técnicas más complejas, asegurando que cada proyecto cumpla con los más altos estándares de calidad y seguridad.</p>
-            </div>
+            <p class="member-bio">Técnico especializado en infraestructura y sistemas con más de 10 años de experiencia en el sector. Nicolás es el encargado de diseñar e implementar las soluciones técnicas más complejas, asegurando que cada proyecto cumpla con los más altos estándares de calidad y seguridad.</p>
           </div>
 
           <div class="team-member slide-in-right">
-            <div class="member-photo">
-              <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Mariana">
-                <img src="./img/team/opw.png" alt="Mariana" class="member-image" onerror="handleImageError(this)">
-              </a>
+            <div class="member-header">
+              <div class="member-photo">
+                <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Mariana">
+                  <img src="./img/team/opw.png" alt="Mariana" class="member-image" onerror="handleImageError(this)">
+                </a>
+              </div>
+              <div class="member-name-role">
+                <h4>Mariana</h4>
+                <p class="member-role">Community Manager</p>
+              </div>
             </div>
-            <div class="member-info">
-              <h4>Mariana</h4>
-              <p class="member-role">Community Manager</p>
-              <p class="member-bio">Mariana es nuestra especialista en comunicación digital y gestión de comunidades. Con su creatividad y conocimiento del mercado, se encarga de mantener la presencia digital de Hexacore, gestionando nuestras redes sociales y creando contenido que conecta con nuestros clientes.</p>
-            </div>
+            <p class="member-bio">Mariana es nuestra especialista en comunicación digital y gestión de comunidades. Con su creatividad y conocimiento del mercado, se encarga de mantener la presencia digital de Hexacore, gestionando nuestras redes sociales y creando contenido que conecta con nuestros clientes.</p>
           </div>
 
           <div class="team-member slide-in-left">
-            <div class="member-photo">
-              <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Hexa-Bot">
-                <img src="./img/team/bot.png" alt="Hexa-Bot" class="member-image" onerror="handleImageError(this)">
-              </a>
+            <div class="member-header">
+              <div class="member-photo">
+                <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Hexa-Bot">
+                  <img src="./img/team/bot.png" alt="Hexa-Bot" class="member-image" onerror="handleImageError(this)">
+                </a>
+              </div>
+              <div class="member-name-role">
+                <h4>Hexa-Bot</h4>
+                <p class="member-role">Asistente de Respuestas</p>
+              </div>
             </div>
-            <div class="member-info">
-              <h4>Hexa-Bot</h4>
-              <p class="member-role">Asistente de Respuestas</p>
-              <p class="member-bio">Bot es nuestro asistente virtual inteligente que se encarga de responder consultas iniciales y proporcionar información básica a nuestros clientes las 24 horas del día. Diseñado para ofrecer respuestas rápidas y precisas, Bot es la primera línea de contacto para muchas consultas.</p>
-            </div>
+            <p class="member-bio">Bot es nuestro asistente virtual inteligente que se encarga de responder consultas iniciales y proporcionar información básica a nuestros clientes las 24 horas del día. Diseñado para ofrecer respuestas rápidas y precisas, Bot es la primera línea de contacto para muchas consultas.</p>
           </div>
 
           <div class="team-member slide-in-right">
-            <div class="member-photo">
-              <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Delfina">
-                <img src="./img/team/opw.png" alt="Delfina" class="member-image" onerror="handleImageError(this)">
-              </a>
+            <div class="member-header">
+              <div class="member-photo">
+                <a href="http://www.web.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Perfil de Delfina">
+                  <img src="./img/team/opw.png" alt="Delfina" class="member-image" onerror="handleImageError(this)">
+                </a>
+              </div>
+              <div class="member-name-role">
+                <h4>Delfina</h4>
+                <p class="member-role">Desarrolladora Senior</p>
+              </div>
             </div>
-            <div class="member-info">
-              <h4>Delfina</h4>
-              <p class="member-role">Desarrolladora Senior</p>
-              <p class="member-bio">Delfina es nuestra desarrolladora senior con más de 8 años de experiencia en tecnologías web y aplicaciones empresariales. Se especializa en arquitectura de software, desarrollo de APIs y optimización de rendimiento, contribuyendo a crear soluciones escalables y eficientes para nuestros clientes.</p>
-            </div>
+            <p class="member-bio">Delfina es nuestra desarrolladora senior con más de 8 años de experiencia en tecnologías web y aplicaciones empresariales. Se especializa en arquitectura de software, desarrollo de APIs y optimización de rendimiento, contribuyendo a crear soluciones escalables y eficientes para nuestros clientes.</p>
           </div>
         </div>
       </div>
@@ -585,16 +588,21 @@
 
   <footer class="bottom-bar" role="contentinfo">
     <div class="container">
-      <div class="text">&copy; <span id="current-year">2025</span> Hexacore | Diseño: <a href="https://www.nicolasmato.com.ar" target="_blank" class="nmato-link">nmato</a></div>
+      <div class="text">&copy; <span id="current-year">2025</span> Hexacore | Diseño web: <a href="https://www.nicolasmato.com.ar" target="_blank" class="nmato-link">nmato</a></div>
       <div class="icons">
         <a href="mailto:hexacore.soporte@gmail.com" class="mail" aria-label="Correo"><i class="fas fa-envelope"></i></a>
-        <a href="https://api.whatsapp.com/send?phone=5491123923138" target="_blank" class="whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.linkedin.com/company/hexacoreit" target="_blank" class="linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <!-- <a href="https://api.whatsapp.com/send?phone=5491123923138" target="_blank" class="whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a> -->
+        <!-- <a href="https://www.linkedin.com/company/hexacoreit" target="_blank" class="linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a> -->
         <a href="https://www.instagram.com/hexacore.it/" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="https://www.facebook.com/hexacore.it" target="_blank" class="facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
       </div>
     </div>
   </footer>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a href="https://api.whatsapp.com/send?phone=5491123923138" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp" title="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
   <script src="./js/main.js" defer></script>
 </body>

@@ -500,69 +500,11 @@ function setupFormValidation() {
   });
 }
 
-/* ===== Cambio de Tema (Claro/Oscuro) ===== */
-function updateLogos(theme) {
-  const homeLogos = document.querySelectorAll('.home-logo');
-  
-  // Siempre usar logo.svg en ambos temas
-  homeLogos.forEach(logo => {
-    logo.src = './img/logo.svg';
-  });
-}
-
-function setupThemeToggle() {
-  const themeToggle = document.getElementById('theme-toggle');
-  const themeIcon = document.getElementById('theme-icon');
-  const html = document.documentElement;
-  
-  if (!themeToggle || !themeIcon) return;
-
-  // Detectar preferencia del sistema
-  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const systemTheme = prefersDark ? 'dark' : 'light';
-
-  // Cargar tema guardado, o usar preferencia del sistema, o tema oscuro por defecto
-  const savedTheme = localStorage.getItem('theme') || systemTheme;
-  if (savedTheme === 'light') {
-    html.setAttribute('data-theme', 'light');
-    themeIcon.classList.remove('fa-sun');
-    themeIcon.classList.add('fa-moon');
-    updateLogos('light');
-  } else {
-    html.setAttribute('data-theme', 'dark');
-    themeIcon.classList.remove('fa-moon');
-    themeIcon.classList.add('fa-sun');
-    updateLogos('dark');
-  }
-
-  // Cambiar tema al hacer clic
-  themeToggle.addEventListener('click', () => {
-    const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    // Optimización: agregar will-change temporalmente para mejor rendimiento
-    document.body.style.willChange = 'background-color, color';
-    
-    html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    
-    // Cambiar icono
-    if (newTheme === 'light') {
-      themeIcon.classList.remove('fa-sun');
-      themeIcon.classList.add('fa-moon');
-    } else {
-      themeIcon.classList.remove('fa-moon');
-      themeIcon.classList.add('fa-sun');
-    }
-    
-    // Actualizar logos
-    updateLogos(newTheme);
-    
-    // Remover will-change después de la transición para liberar recursos
-    setTimeout(() => {
-      document.body.style.willChange = 'auto';
-    }, 350);
-  });
+/* ===== Botón de Contactanos ===== */
+function setupWhatsAppButton() {
+  // El botón ahora es un enlace que navega a #contacto
+  // La navegación se maneja automáticamente por el href
+  // Esta función se mantiene por compatibilidad pero ya no es necesaria
 }
 
 // Manejo de errores para imágenes rotas
@@ -588,7 +530,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setupMenuTransparency();
   setupServiceToggles();
   setupFormValidation();
-  setupThemeToggle();
+  setupWhatsAppButton();
   updateCopyrightYear();
   // Recalcular en resize por si el alto cambia (responsive)
   window.addEventListener('resize', applyChromeHeights);
