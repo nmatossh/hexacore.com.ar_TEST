@@ -507,6 +507,64 @@ function setupWhatsAppButton() {
   // Esta función se mantiene por compatibilidad pero ya no es necesaria
 }
 
+/* ===== Menú desplegable del chatbot de WhatsApp ===== */
+function setupWhatsAppChat() {
+  const toggleBtn = document.getElementById('whatsapp-toggle-btn');
+  const chatWindow = document.getElementById('whatsapp-chat-window');
+  const closeBtn = document.getElementById('chat-close-btn');
+
+  if (!toggleBtn || !chatWindow || !closeBtn) {
+    return;
+  }
+
+  function openChat() {
+    chatWindow.setAttribute('aria-hidden', 'false');
+    toggleBtn.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeChat() {
+    chatWindow.setAttribute('aria-hidden', 'true');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const isOpen = chatWindow.getAttribute('aria-hidden') === 'false';
+    if (isOpen) {
+      closeChat();
+    } else {
+      openChat();
+    }
+  });
+
+  closeBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeChat();
+  });
+
+  // Cerrar al hacer clic fuera del chat
+  document.addEventListener('click', (e) => {
+    const container = document.querySelector('.whatsapp-chat-container');
+    if (container && !container.contains(e.target)) {
+      const isOpen = chatWindow.getAttribute('aria-hidden') === 'false';
+      if (isOpen) {
+        closeChat();
+      }
+    }
+  });
+
+  // Cerrar con la tecla Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const isOpen = chatWindow.getAttribute('aria-hidden') === 'false';
+      if (isOpen) {
+        closeChat();
+        toggleBtn.focus();
+      }
+    }
+  });
+}
+
 // Manejo de errores para imágenes rotas
 window.handleImageError = function(img) {
   // Ocultar la imagen si falla al cargar
@@ -531,6 +589,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setupServiceToggles();
   setupFormValidation();
   setupWhatsAppButton();
+  setupWhatsAppChat();
   updateCopyrightYear();
   // Recalcular en resize por si el alto cambia (responsive)
   window.addEventListener('resize', applyChromeHeights);

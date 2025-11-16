@@ -599,12 +599,45 @@
     </div>
   </footer>
 
-  <!-- Botón flotante de WhatsApp -->
-  <a href="https://api.whatsapp.com/send?phone=5491123923138" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp" title="Contactar por WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+  <!-- Botón flotante de WhatsApp con menú desplegable -->
+  <div class="whatsapp-chat-container">
+    <div class="whatsapp-chat-window" id="whatsapp-chat-window" aria-hidden="true">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-avatar">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <div class="chat-header-text">
+            <h4>Hexacore</h4>
+            <p class="chat-status">En línea</p>
+          </div>
+        </div>
+        <button class="chat-close" id="chat-close-btn" aria-label="Cerrar chat" type="button">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="chat-body">
+        <div class="chat-messages">
+          <div class="chat-message bot-message">
+            <p>¡Hola! 👋 Bienvenido a Hexacore. ¿En qué podemos ayudarte hoy?</p>
+          </div>
+        </div>
+      </div>
+      <div class="chat-footer">
+        <div class="chat-input-container">
+          <input type="text" class="chat-input" placeholder="Escribe tu mensaje..." disabled>
+          <button class="chat-send" type="button" disabled aria-label="Enviar mensaje">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+        <p class="chat-footer-note">El chatbot estará disponible próximamente</p>
+      </div>
+    </div>
+    <button class="whatsapp-float" id="whatsapp-toggle-btn" aria-label="Abrir chat" aria-expanded="false" type="button">
+      <i class="fab fa-whatsapp"></i>
+    </button>
+  </div>
 
   <script src="./js/main.js" defer></script>
 </body>
 </html>
-
