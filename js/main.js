@@ -140,18 +140,18 @@ function setupMenu() {
 
   // Función para cerrar el menú completamente
   function closeMenu() {
-    menuLinks.dataset.visible = 'false';
-    hamburger.classList.remove('active');
-    hamburger.setAttribute('aria-expanded', 'false');
+      menuLinks.dataset.visible = 'false';
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('menu-open');
     closeSubmenus();
     // Esperar a que termine la animación antes de ocultar
-    setTimeout(() => {
+      setTimeout(() => {
       if (window.innerWidth <= MOBILE_BREAKPOINT) {
         menuLinks.style.display = 'none';
       }
-    }, 300);
-  }
+      }, 300);
+    }
 
   window.addEventListener('resize', () => {
     const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
@@ -171,10 +171,10 @@ function setupMenu() {
         closeMenu();
       } else {
         // Si ya está cerrado, solo asegurar que esté oculto
-        menuLinks.style.display = 'none';
-        menuLinks.dataset.visible = 'false';
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
+      menuLinks.style.display = 'none';
+      menuLinks.dataset.visible = 'false';
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
         document.body.classList.remove('menu-open');
       }
     }
@@ -230,7 +230,7 @@ function setupMenuTransparency() {
       // Si hace scroll hacia abajo, agregar transparencia
       menu.classList.add('transparent');
       bottomBar.classList.add('transparent');
-    }
+  }
   };
 
   const scrollTargets = [window, document];
@@ -316,189 +316,6 @@ function setupServiceToggles() {
   });
 }
 
-/* ===== Validación del Formulario de Contacto ===== */
-function setupFormValidation() {
-  const form = document.querySelector('.contact-form');
-  if (!form) return;
-
-  const nombre = document.getElementById('nombre');
-  const email = document.getElementById('email');
-  const telefono = document.getElementById('telefono');
-  const mensaje = document.getElementById('mensaje');
-
-  // Función para mostrar error
-  function showError(input, message) {
-    const formGroup = input.closest('.form-group');
-    let errorElement = formGroup.querySelector('.error-message');
-    
-    if (!errorElement) {
-      errorElement = document.createElement('span');
-      errorElement.className = 'error-message';
-      formGroup.appendChild(errorElement);
-    }
-    
-    errorElement.textContent = message;
-    input.classList.add('error');
-  }
-
-  // Función para limpiar error
-  function clearError(input) {
-    const formGroup = input.closest('.form-group');
-    const errorElement = formGroup.querySelector('.error-message');
-    
-    if (errorElement) {
-      errorElement.remove();
-    }
-    
-    input.classList.remove('error');
-  }
-
-  // Validar email
-  function validateEmail(emailValue) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(emailValue);
-  }
-
-  // Validar teléfono (opcional, pero si se proporciona debe ser válido)
-  function validatePhone(phoneValue) {
-    if (!phoneValue.trim()) return true; // Opcional
-    const phoneRegex = /^[\d\s\+\-\(\)]+$/;
-    return phoneRegex.test(phoneValue) && phoneValue.replace(/\D/g, '').length >= 8;
-  }
-
-  // Validación en tiempo real
-  if (nombre) {
-    nombre.addEventListener('blur', () => {
-      const value = nombre.value.trim();
-      if (value.length < 2) {
-        showError(nombre, 'El nombre debe tener al menos 2 caracteres');
-      } else {
-        clearError(nombre);
-      }
-    });
-
-    nombre.addEventListener('input', () => {
-      if (nombre.value.trim().length >= 2) {
-        clearError(nombre);
-      }
-    });
-  }
-
-  if (email) {
-    email.addEventListener('blur', () => {
-      const value = email.value.trim();
-      if (!value) {
-        showError(email, 'El correo electrónico es obligatorio');
-      } else if (!validateEmail(value)) {
-        showError(email, 'Por favor, ingresa un correo electrónico válido');
-      } else {
-        clearError(email);
-      }
-    });
-
-    email.addEventListener('input', () => {
-      if (validateEmail(email.value.trim())) {
-        clearError(email);
-      }
-    });
-  }
-
-  if (telefono) {
-    telefono.addEventListener('blur', () => {
-      const value = telefono.value.trim();
-      if (value && !validatePhone(value)) {
-        showError(telefono, 'Por favor, ingresa un número de teléfono válido');
-      } else {
-        clearError(telefono);
-      }
-    });
-
-    telefono.addEventListener('input', () => {
-      if (!telefono.value.trim() || validatePhone(telefono.value.trim())) {
-        clearError(telefono);
-      }
-    });
-  }
-
-  if (mensaje) {
-    mensaje.addEventListener('blur', () => {
-      const value = mensaje.value.trim();
-      if (value.length < 10) {
-        showError(mensaje, 'El mensaje debe tener al menos 10 caracteres');
-      } else {
-        clearError(mensaje);
-      }
-    });
-
-    mensaje.addEventListener('input', () => {
-      if (mensaje.value.trim().length >= 10) {
-        clearError(mensaje);
-      }
-    });
-  }
-
-  // Validación al enviar
-  form.addEventListener('submit', (e) => {
-    let isValid = true;
-
-    // Validar nombre
-    if (nombre) {
-      const nombreValue = nombre.value.trim();
-      if (nombreValue.length < 2) {
-        showError(nombre, 'El nombre debe tener al menos 2 caracteres');
-        isValid = false;
-      } else {
-        clearError(nombre);
-      }
-    }
-
-    // Validar email
-    if (email) {
-      const emailValue = email.value.trim();
-      if (!emailValue) {
-        showError(email, 'El correo electrónico es obligatorio');
-        isValid = false;
-      } else if (!validateEmail(emailValue)) {
-        showError(email, 'Por favor, ingresa un correo electrónico válido');
-        isValid = false;
-      } else {
-        clearError(email);
-      }
-    }
-
-    // Validar teléfono
-    if (telefono) {
-      const telefonoValue = telefono.value.trim();
-      if (telefonoValue && !validatePhone(telefonoValue)) {
-        showError(telefono, 'Por favor, ingresa un número de teléfono válido');
-        isValid = false;
-      } else {
-        clearError(telefono);
-      }
-    }
-
-    // Validar mensaje
-    if (mensaje) {
-      const mensajeValue = mensaje.value.trim();
-      if (mensajeValue.length < 10) {
-        showError(mensaje, 'El mensaje debe tener al menos 10 caracteres');
-        isValid = false;
-      } else {
-        clearError(mensaje);
-      }
-    }
-
-    if (!isValid) {
-      e.preventDefault();
-      // Scroll al primer error
-      const firstError = form.querySelector('.error');
-      if (firstError) {
-        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        firstError.focus();
-      }
-    }
-  });
-}
 
 /* ===== Botón de Contactanos ===== */
 function setupWhatsAppButton() {
@@ -541,7 +358,7 @@ function setupWhatsAppChat() {
     e.preventDefault();
     closeChat();
   });
-
+  
   // Cerrar al hacer clic fuera del chat
   document.addEventListener('click', (e) => {
     const container = document.querySelector('.whatsapp-chat-container');
@@ -587,7 +404,6 @@ window.addEventListener('DOMContentLoaded', () => {
   setupScrollAnimations();
   setupMenuTransparency();
   setupServiceToggles();
-  setupFormValidation();
   setupWhatsAppButton();
   setupWhatsAppChat();
   updateCopyrightYear();
@@ -635,5 +451,5 @@ window.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     document.body.classList.add('page-loaded');
   }, 50);
-});
+    });
 

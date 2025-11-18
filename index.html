@@ -448,135 +448,53 @@
     <section id="contacto" class="featured-section">
       <h2 class="section-title">Contacto</h2>
       <div class="contact-container">
-        <!-- Formulario de Contacto -->
-        <div class="contact-form-section slide-in-left">
-          <h3>Envíanos tu Consulta</h3>
-          <form class="contact-form" action="#" method="POST">
-            <div class="form-group">
-              <label for="nombre">Nombre *</label>
-              <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
-            </div>
-            
-            <div class="form-group">
-              <label for="empresa">Empresa u Organización <span style="font-weight: normal; color: var(--text-muted); font-size: 0.85rem;">(opcional)</span></label>
-              <input type="text" id="empresa" name="empresa" placeholder="Si sos particular, podés dejar este campo vacío">
-            </div>
-            
-            <div class="form-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" required placeholder="tu@email.com">
-            </div>
-            
-            <div class="form-group">
-              <label for="telefono">Teléfono <span style="font-weight: normal; color: var(--text-muted); font-size: 0.85rem;">(opcional)</span></label>
-              <div class="phone-input-group">
-                <select id="codigo-pais" name="codigo-pais" class="phone-code">
-                  <option value="+54" selected>🇦🇷 +54</option>
-                  <option value="+1">🇺🇸 +1</option>
-                  <option value="+55">🇧🇷 +55</option>
-                  <option value="+56">🇨🇱 +56</option>
-                  <option value="+57">🇨🇴 +57</option>
-                  <option value="+51">🇵🇪 +51</option>
-                  <option value="+52">🇲🇽 +52</option>
-                  <option value="+58">🇻🇪 +58</option>
-                  <option value="+34">🇪🇸 +34</option>
-                  <option value="+33">🇫🇷 +33</option>
-                  <option value="+39">🇮🇹 +39</option>
-                  <option value="+49">🇩🇪 +49</option>
-                  <option value="+44">🇬🇧 +44</option>
-                  <option value="+591">🇧🇴 +591</option>
-                  <option value="+593">🇪🇨 +593</option>
-                  <option value="+595">🇵🇾 +595</option>
-                  <option value="+598">🇺🇾 +598</option>
-                  <option value="+506">🇨🇷 +506</option>
-                  <option value="+507">🇵🇦 +507</option>
-                  <option value="+503">🇸🇻 +503</option>
-                  <option value="+502">🇬🇹 +502</option>
-                  <option value="+504">🇭🇳 +504</option>
-                  <option value="+505">🇳🇮 +505</option>
-                  <option value="+509">🇭🇹 +509</option>
-                  <option value="+53">🇨🇺 +53</option>
-                  <option value="+592">🇬🇾 +592</option>
-                  <option value="+597">🇸🇷 +597</option>
-                </select>
-                <input type="tel" id="telefono" name="telefono" class="phone-number" placeholder="11 1234-5678">
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label for="consulta">¿En qué podemos ayudarte? <span style="font-weight: normal; color: var(--text-muted); font-size: 0.85rem;">(opcional)</span></label>
-              <select id="consulta" name="consulta">
-                <option value="">Selecciona una opción</option>
-                <option value="consulta-general">Consulta General</option>
-                <option value="presupuesto">Solicitar Presupuesto</option>
-                <option value="infraestructura">Infraestructura IT</option>
-                <option value="seguridad">Seguridad Informática</option>
-                <option value="redes">Redes y Conectividad</option>
-                <option value="bases-datos">Bases de Datos</option>
-                <option value="cloud">Migración a la Nube</option>
-                <option value="soporte">Soporte Técnico</option>
-
-              </select>
-            </div>
-            
-            <div class="form-group">
-              <label for="mensaje">Mensaje *</label>
-              <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Contanos tu consulta, proyecto o necesidad. Cuanto más detalles compartas, mejor podremos ayudarte."></textarea>
-            </div>
-            
-            <button type="submit" class="submit-btn">Enviar Mensaje</button>
-          </form>
-        </div>
-
-        <!-- Información de Contacto y Mapa -->
-        <div class="contact-info-section slide-in-right">
-          <div class="contact-details">
-            <h3>Información de Contacto</h3>
-            <div class="contact-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <div>
-                <h4>Dirección</h4>
-                <p>Av. Corrientes 1234<br>Buenos Aires, Argentina</p>
-              </div>
-            </div>
-            
-            <div class="contact-item">
-              <i class="fas fa-phone"></i>
-              <div>
-                <h4>Teléfono</h4>
-                <p>+54 11 2345-6789</p>
-              </div>
-            </div>
-            
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <div>
-                <h4>Email</h4>
-                <p>info@hexacore.com.ar<br>soporte@hexacore.com.ar</p>
-              </div>
-            </div>
-            
-            <div class="contact-item">
-              <i class="fas fa-clock"></i>
-              <div>
-                <h4>Horarios de Atención</h4>
-                <p>Lunes a Viernes: 9:00 - 18:00<br>Sábados: 9:00 - 13:00</p>
-              </div>
+        <!-- Información de Contacto -->
+        <div class="contact-details slide-in-left">
+          <h3>Información de Contacto</h3>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4>Dirección</h4>
+              <p>Av. Corrientes 1234<br>Buenos Aires, Argentina</p>
             </div>
           </div>
           
-          <!-- Mapa de Google Maps -->
-          <div class="map-container">
-            <h3>Nuestra Ubicación</h3>
-            <div class="map-wrapper">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11048.290623637922!2d-58.52046080521688!3d-34.587052393051025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1761269105327!5m2!1ses-419!2sar" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade"
-                title="Ubicación de Hexacore en Buenos Aires, Argentina">
-              </iframe>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h4>Teléfono</h4>
+              <p>+54 11 2345-6789</p>
             </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h4>Email</h4>
+              <p>info@hexacore.com.ar<br>soporte@hexacore.com.ar</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <h4>Horarios de Atención</h4>
+              <p>Lunes a Viernes: 9:00 - 18:00<br>Sábados: 9:00 - 13:00</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mapa de Google Maps -->
+        <div class="map-container slide-in-right">
+          <h3>Nuestra Ubicación</h3>
+          <div class="map-wrapper">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11048.290623637922!2d-58.52046080521688!3d-34.587052393051025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1761269105327!5m2!1ses-419!2sar" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación de Hexacore en Buenos Aires, Argentina">
+            </iframe>
           </div>
         </div>
       </div>
